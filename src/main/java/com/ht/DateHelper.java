@@ -165,7 +165,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByDays
-	 * @Description: 制定日期字符串+天数
+	 * @Description: 指定日期字符串+天数
 	 * @param dateStr
 	 * @param days
 	 * @return
@@ -178,10 +178,65 @@ public class DateHelper {
 		cal.add(Calendar.DAY_OF_MONTH, days);
 		return df_ymd.format(cal.getTime());
 	}
-	
-	
-	
-	public static void main(String[] args) throws ParseException {
+	/**
+	 * 
+	 * @Title: addTimeByHours
+	 * @Description: 指定时间+hours
+	 * @param date
+	 * @param hours
+	 * @return
+	 * @return: Date
+	 */
+	public static Date addTimeByHours(Date date, int hours) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.add(Calendar.HOUR, hours);
+		return calendar.getTime();
+	}
+	/**
+	 * 
+	 * @Title: addTimeByMinutes
+	 * @Description: 指定日期+minutes
+	 * @param date
+	 * @param minutes
+	 * @return
+	 * @return: Date
+	 */
+	public static Date addTimeByMinutes(Date date, int minutes) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.add(Calendar.MINUTE, minutes);
+		return calendar.getTime();
+	}
+	/**
+	 * 
+	 * @Title: addTimeByMonths
+	 * @Description:指定日期+months
+	 * @param date
+	 * @param months
+	 * @return
+	 * @return: Date
+	 */
+	public static Date addTimeByMonths(Date date, int months) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.add(Calendar.MONTH, months);
+		return calendar.getTime();
+	}
+	/**
+	 * 
+	 * @Title: addTimeByYears
+	 * @Description: 指定时间+years
+	 * @param date
+	 * @param years
+	 * @return
+	 * @return: Date
+	 */
+	public static Date addTimeByYears(Date date, int years) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.add(Calendar.YEAR, years);
+		return calendar.getTime();
 	}
 	
 	
