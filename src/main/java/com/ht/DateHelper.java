@@ -99,7 +99,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: parseYMDStrForDate
-	 * @Description: TODO
+	 * @Description: yyyy-MM-dd 格式字符串转换为Date格式
 	 * @param dateStr
 	 * @return
 	 * @throws ParseException
@@ -108,8 +108,81 @@ public class DateHelper {
 	public static Date parseYMDStrForDate(String dateStr) throws ParseException{
 		return df_ymd.parse(dateStr);
 	}
+	/**
+	 * 
+	 * @Title: parseYMDHMSStrForDate
+	 * @Description: yyyy-MM-dd hh:mm:ss格式字符串转换为Date格式
+	 * @param dateStr
+	 * @return
+	 * @throws ParseException
+	 * @return: Date
+	 */
+	public static Date parseYMDHMSStrForDate(String dateStr) throws ParseException{
+		return df_ymdhms.parse(dateStr);
+	}
+	/**
+	 * 
+	 * @Title: parseDate
+	 * @Description: dateStr日期格式的字符串，转换为format格式的Date
+	 * @param dateStr
+	 * @param format
+	 * @return
+	 * @throws ParseException
+	 * @return: Date
+	 */
+	public static Date parseDate(String dateStr,String format) throws ParseException{
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.parse(dateStr);
+	}
+	/**
+	 * 
+	 * @Title: getAmOrPm
+	 * @Description: 获取指定的日期是上午还是下午
+	 * @param date
+	 * @return
+	 * @return: Integer
+	 */
+	public static Integer getAmOrPm(Date date){
+		Calendar cal=Calendar.getInstance();
+		cal.setTime(date);
+	    @SuppressWarnings("static-access")
+		Integer int_date = cal.get(cal.AM_PM);
+		return int_date;
+	}
+	/**
+	 * 
+	 * @Title: addTimeByDays
+	 * @Description: 当前时间+指定天数
+	 * @param days
+	 * @return
+	 * @return: String
+	 */
+	public static String addTimeByDays(int days){
+		Calendar cal=Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, days);
+		return df_ymd.format(cal.getTime());
+	}
+	/**
+	 * 
+	 * @Title: addTimeByDays
+	 * @Description: 制定日期字符串+天数
+	 * @param dateStr
+	 * @param days
+	 * @return
+	 * @throws ParseException
+	 * @return: String
+	 */
+	public static String addTimeByDays(String dateStr,int days) throws ParseException{
+		Calendar cal=Calendar.getInstance();
+		cal.setTime(parseYMDStrForDate(dateStr));
+		cal.add(Calendar.DAY_OF_MONTH, days);
+		return df_ymd.format(cal.getTime());
+	}
 	
 	
+	
+	public static void main(String[] args) throws ParseException {
+	}
 	
 	
 }
