@@ -1,10 +1,11 @@
 package com.ht;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -16,9 +17,11 @@ import java.util.Date;
 public class DateHelper {
 	private static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
 	private static final String YEAR_MONTH_DAY_HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd hh:mm:ss";
+	private static final String YEARMONTHDAYHOURMINUTESECONDTEMPLATE = "yyyyMMddhhmmss";
 	
 	private static SimpleDateFormat df_ymd=new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
 	private static SimpleDateFormat df_ymdhms=new SimpleDateFormat(YEAR_MONTH_DAY_HOUR_MINUTE_SECOND_TEMPLATE);
+	private static SimpleDateFormat df_ymdhms_no=new SimpleDateFormat(YEARMONTHDAYHOURMINUTESECONDTEMPLATE);
 	
 	/**
 	 * 
@@ -78,6 +81,27 @@ public class DateHelper {
 	public static String getTodayStr(){
 		return df_ymd.format(new Date());
 	}
+	/**
+	 * 
+	 * @Title: getNowTime
+	 * @Description: 获取String格式的，今天的yyyy-MM-dd HH:mm:ss
+	 * @return
+	 * @return: String
+	 */
+	public static String getNowTime(){
+		return df_ymdhms.format(new Date());
+	}
+	/**
+	 * 
+	 * @Title: getNowTimeToNo
+	 * @Description:  获取String格式的，现在的yyyyMMddHHmmss
+	 * @return
+	 * @return: String
+	 */
+	public static String getNowTimeToNo(){
+		return df_ymdhms_no.format(new Date());
+	}
+	
 	/**
 	 * 
 	 * @Title: comparDate
@@ -238,6 +262,157 @@ public class DateHelper {
 		calendar.add(Calendar.YEAR, years);
 		return calendar.getTime();
 	}
+	/**
+	 * 
+	 * @Title: subtractTimeByMonth
+	 * @Description: 指定日期-months
+	 * @param date
+	 * @param months
+	 * @return
+	 * @return: Date
+	 */
+	public static Date subtractTimeByMonth(Date date, int months) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - months);
+		return calendar.getTime();
+	}
 	
+	/**
+	 * 
+	 * @Title: subtractTimeByDays
+	 * @Description: 指定时间-days
+	 * @param date
+	 * @param days
+	 * @return
+	 * @return: Date
+	 */
+	public static Date subtractTimeByDays(Date date, int days) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - days);
+		return calendar.getTime();
+	}
+	/**
+	 * 
+	 * @Title: subtractTimeByHours
+	 * @Description: 指定时间-hours
+	 * @param date
+	 * @param hours
+	 * @return
+	 * @return: Date
+	 */
+	public static Date subtractTimeByHours(Date date, int hours) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.set(Calendar.HOUR, calendar.get(Calendar.HOUR) - hours);
+		return calendar.getTime();
+	}
+	
+	/**
+	 * 
+	 * @Title: getBetweenDate
+	 * @Description: 获取两个日期之间日期 包括两个日期
+	 * @param from
+	 * @param to
+	 * @return
+	 * @throws ParseException
+	 * @return: List<String>
+	 */
+	public static List<String> getBetweenDate(String from,String to) throws ParseException{
+		 List<String> rtnlist=new ArrayList<String>();
+		 Date  fdate=parseYMDStrForDate(from);
+		 Date  edate=parseYMDStrForDate(to);
+		 //如果开始日期比结束日期大 互换日期
+        if(edate.getTime()<fdate.getTime()){
+       	 Date date=fdate;
+       	 fdate=edate;
+       	 edate=date;
+        }		 
+		 Calendar ca1=Calendar.getInstance();
+		 ca1.setTime(fdate);
+		 Calendar ca2=Calendar.getInstance();
+		 ca2.setTime(edate);
+		 
+		 long count=(ca2.getTimeInMillis()-ca1.getTimeInMillis())/86400000;
+		 rtnlist.add(formatDateToYMDStr(ca1.getTime()));
+		 for(long i=0;i<count;i++){
+			   ca1.add(Calendar.DAY_OF_YEAR, 1);
+			   rtnlist.add(formatDateToYMDStr(ca1.getTime()));
+		 }
+		 return rtnlist;
+	}
+	/**
+	 * 
+	 * @Title: subDaysBetweenTwoDate
+	 * @Description: 两个日期相差的天数
+	 * @param longdate
+	 * @param shortdate
+	 * @return
+	 * @return: int
+	 */
+	public static int subDaysBetweenTwoDate(Date longdate,Date shortdate){
+		if(null == longdate || null == shortdate){
+			return -1;
+		}else{
+			return (int)(longdate.getTime() - shortdate.getTime())/86400000; 
+		}
+	}
+	/**
+	 * 
+	 * @Title: subMinsBetweenTwoDate
+	 * @Description: 两个日期相差的分钟数
+	 * @param longdate
+	 * @param shortdate
+	 * @return
+	 * @return: int
+	 */
+	public static int subMinsBetweenTwoDate(Date longdate,Date shortdate){
+		if(null == longdate || null == shortdate){
+			return -1;
+		}else{
+			return (int)(longdate.getTime() - shortdate.getTime())/60000; 
+		}
+	}
+	
+	/**
+	 * 
+	 * @Title: getWeek
+	 * @Description: 获取是周几
+	 * @param weekday
+	 * @return
+	 * @return: String
+	 */
+	public static String getWeek(int weekday){
+		String dayNames[] = {"星期日","星期一","星期二","星期三","星期四","星期五","星期六"};
+		return dayNames[weekday];
+	}
+	/**
+	 * 
+	 * @Title: todayWeek
+	 * @Description: 今天是周几
+	 * @return
+	 * @return: String
+	 */
+	public static String todayWeek(){
+		String weekString = "";
+		Calendar calendar = Calendar.getInstance();
+		Date date = new Date();
+		calendar.setTime(date); 
+		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+		weekString = getWeek(dayOfWeek - 1);
+		return weekString;
+	}
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) throws ParseException {
+		System.out.println(todayWeek());
+		
+	}
 	
 }
