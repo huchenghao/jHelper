@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.helper</groupId>
   <artifactId>jHelper</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>jHelper</name>
   <description>java common helper</description>
   
@@ -21,11 +21,6 @@
             <artifactId>jchardet</artifactId>
             <version>1.0</version>
         </dependency>
-        <!-- 短信发送使用的容联云通讯 -->
-		<dependency>
-          <groupId>com.ytx</groupId>
-          <artifactId>sdkyuntongxun</artifactId>
-          <version>1.0</version>
-	    </dependency>
+        
    </dependencies>
 </project>
