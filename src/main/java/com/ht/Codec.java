@@ -9,6 +9,8 @@ public class Codec {
 
 	
 	
+	
+	
 	public static String MD5Code(String pass) {
 		MessageDigest messageDigest = null;
 		try {
@@ -31,7 +33,5 @@ public class Codec {
 		}
 		return md5StrBuff.toString();
 	}
-	public static void main(String[] args) {
-		System.out.println(MD5Code("123456"));
-	}
+	
 }
