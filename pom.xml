@@ -21,5 +21,11 @@
             <artifactId>jchardet</artifactId>
             <version>1.0</version>
         </dependency>
+        <!-- 短信发送使用的容联云通讯 -->
+		<dependency>
+          <groupId>com.ytx</groupId>
+          <artifactId>sdkyuntongxun</artifactId>
+          <version>1.0</version>
+	    </dependency>
    </dependencies>
 </project>
