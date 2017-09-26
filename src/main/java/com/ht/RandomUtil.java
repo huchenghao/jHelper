@@ -5,12 +5,16 @@ package com.ht;
 import java.util.*;
 
 public final class RandomUtil {
-	
-    public static final String ALLCHAR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static final String LETTERCHAR = "abcdefghijkllmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static final String NUMBERCHAR = "0123456789";
+    public static final String ALLCHAR
+            = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String LETTERCHAR
+            = "abcdefghijkllmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String NUMBERCHAR
+            = "0123456789";
+
+
     /**
-     * Éú³ÉÖ¸¶¨·¶Î§ÄÚµÄËæ»úÊı
+     * ç”Ÿæˆåˆ¶å®šèŒƒå›´å†…çš„éšæœºæ•°
      *
      * @param scopeMin
      * @param scoeMax
@@ -20,12 +24,9 @@ public final class RandomUtil {
         Random random = new Random();
         return (random.nextInt(scoeMax) % (scoeMax - scopeMin + 1) + scopeMin);
     }
-    
-    public static void main(String[] args) {
-		System.out.println(number(4));
-	}
+
     /**
-     * ·µ»Ø¹Ì¶¨³¤¶ÈµÄÊı×Ö
+     * è¿”å›å›ºå®šé•¿åº¦çš„æ•°å­—
      *
      * @param length
      * @return
@@ -40,10 +41,10 @@ public final class RandomUtil {
     }
 
     /**
-     * ·µ»ØÒ»¸ö¶¨³¤µÄËæ»ú×Ö·û´®(Ö»°üº¬´óĞ¡Ğ´×ÖÄ¸¡¢Êı×Ö)
+     * è¿”å›ä¸€ä¸ªå®šé•¿çš„éšæœºå­—ç¬¦ä¸²(åªåŒ…å«å¤§å°å†™å­—æ¯ã€æ•°å­—)
      *
-     * @param length Ëæ»ú×Ö·û´®³¤¶È
-     * @return Ëæ»ú×Ö·û´®
+     * @param length éšæœºå­—ç¬¦ä¸²é•¿åº¦
+     * @return éšæœºå­—ç¬¦ä¸²
      */
     public static String String(int length) {
         StringBuffer sb = new StringBuffer();
@@ -55,10 +56,10 @@ public final class RandomUtil {
     }
 
     /**
-     * ·µ»ØÒ»¸ö¶¨³¤µÄËæ»ú´¿×ÖÄ¸×Ö·û´®(Ö»°üº¬´óĞ¡Ğ´×ÖÄ¸)
+     * è¿”å›ä¸€ä¸ªå®šé•¿çš„éšæœºçº¯å­—æ¯å­—ç¬¦ä¸²(åªåŒ…å«å¤§å°å†™å­—æ¯)
      *
-     * @param length Ëæ»ú×Ö·û´®³¤¶È
-     * @return Ëæ»ú×Ö·û´®
+     * @param length éšæœºå­—ç¬¦ä¸²é•¿åº¦
+     * @return éšæœºå­—ç¬¦ä¸²
      */
     public static String MixString(int length) {
         StringBuffer sb = new StringBuffer();
@@ -70,30 +71,30 @@ public final class RandomUtil {
     }
 
     /**
-     * ·µ»ØÒ»¸ö¶¨³¤µÄËæ»ú´¿´óĞ´×ÖÄ¸×Ö·û´®(Ö»°üº¬´óĞ¡Ğ´×ÖÄ¸)
+     * è¿”å›ä¸€ä¸ªå®šé•¿çš„éšæœºçº¯å¤§å†™å­—æ¯å­—ç¬¦ä¸²(åªåŒ…å«å¤§å°å†™å­—æ¯)
      *
-     * @param length Ëæ»ú×Ö·û´®³¤¶È
-     * @return Ëæ»ú×Ö·û´®
+     * @param length éšæœºå­—ç¬¦ä¸²é•¿åº¦
+     * @return éšæœºå­—ç¬¦ä¸²
      */
     public static String LowerString(int length) {
         return MixString(length).toLowerCase();
     }
 
     /**
-     * ·µ»ØÒ»¸ö¶¨³¤µÄËæ»ú´¿Ğ¡Ğ´×ÖÄ¸×Ö·û´®(Ö»°üº¬´óĞ¡Ğ´×ÖÄ¸)
+     * è¿”å›ä¸€ä¸ªå®šé•¿çš„éšæœºçº¯å°å†™å­—æ¯å­—ç¬¦ä¸²(åªåŒ…å«å¤§å°å†™å­—æ¯)
      *
-     * @param length Ëæ»ú×Ö·û´®³¤¶È
-     * @return Ëæ»ú×Ö·û´®
+     * @param length éšæœºå­—ç¬¦ä¸²é•¿åº¦
+     * @return éšæœºå­—ç¬¦ä¸²
      */
     public static String UpperString(int length) {
         return MixString(length).toUpperCase();
     }
 
     /**
-     * Éú³ÉÒ»¸ö¶¨³¤µÄ´¿0×Ö·û´®
+     * ç”Ÿæˆä¸€ä¸ªå®šé•¿çš„çº¯0å­—ç¬¦ä¸²
      *
-     * @param length ×Ö·û´®³¤¶È
-     * @return ´¿0×Ö·û´®
+     * @param length å­—ç¬¦ä¸²é•¿åº¦
+     * @return çº¯0å­—ç¬¦ä¸²
      */
     public static String ZeroString(int length) {
         StringBuffer sb = new StringBuffer();
@@ -104,11 +105,11 @@ public final class RandomUtil {
     }
 
     /**
-     * ¸ù¾İÊı×ÖÉú³ÉÒ»¸ö¶¨³¤µÄ×Ö·û´®£¬³¤¶È²»¹»Ç°Ãæ²¹0
+     * æ ¹æ®æ•°å­—ç”Ÿæˆä¸€ä¸ªå®šé•¿çš„å­—ç¬¦ä¸²ï¼Œé•¿åº¦ä¸å¤Ÿå‰é¢è¡¥0
      *
-     * @param num       Êı×Ö
-     * @param fixdlenth ×Ö·û´®³¤¶È
-     * @return ¶¨³¤µÄ×Ö·û´®
+     * @param num       æ•°å­—
+     * @param fixdlenth å­—ç¬¦ä¸²é•¿åº¦
+     * @return å®šé•¿çš„å­—ç¬¦ä¸²
      */
     public static String toFixdLengthString(long num, int fixdlenth) {
         StringBuffer sb = new StringBuffer();
@@ -116,19 +117,19 @@ public final class RandomUtil {
         if (fixdlenth - strNum.length() >= 0) {
             sb.append(ZeroString(fixdlenth - strNum.length()));
         } else {
-            throw new RuntimeException("½«Êı×Ö" +
-                    num + "×ª»¯Îª³¤¶ÈÎª" + fixdlenth + "µÄ×Ö·û´®·¢ÉúÒì³££¡");
+            throw new RuntimeException("å°†æ•°å­—" +
+                    num + "è½¬åŒ–ä¸ºé•¿åº¦ä¸º" + fixdlenth + "çš„å­—ç¬¦ä¸²å‘ç”Ÿå¼‚å¸¸ï¼");
         }
         sb.append(strNum);
         return sb.toString();
     }
 
     /**
-     * ¸ù¾İÊı×ÖÉú³ÉÒ»¸ö¶¨³¤µÄ×Ö·û´®£¬³¤¶È²»¹»Ç°Ãæ²¹0
+     * æ ¹æ®æ•°å­—ç”Ÿæˆä¸€ä¸ªå®šé•¿çš„å­—ç¬¦ä¸²ï¼Œé•¿åº¦ä¸å¤Ÿå‰é¢è¡¥0
      *
-     * @param num       Êı×Ö
-     * @param fixdlenth ×Ö·û´®³¤¶È
-     * @return ¶¨³¤µÄ×Ö·û´®
+     * @param num       æ•°å­—
+     * @param fixdlenth å­—ç¬¦ä¸²é•¿åº¦
+     * @return å®šé•¿çš„å­—ç¬¦ä¸²
      */
     public static String toFixdLengthString(int num, int fixdlenth) {
         StringBuffer sb = new StringBuffer();
@@ -136,18 +137,18 @@ public final class RandomUtil {
         if (fixdlenth - strNum.length() >= 0) {
             sb.append(ZeroString(fixdlenth - strNum.length()));
         } else {
-            throw new RuntimeException("½«Êı×Ö" +
-                    num + "×ª»¯Îª³¤¶ÈÎª" + fixdlenth + "µÄ×Ö·û´®·¢ÉúÒì³££¡");
+            throw new RuntimeException("å°†æ•°å­—" +
+                    num + "è½¬åŒ–ä¸ºé•¿åº¦ä¸º" + fixdlenth + "çš„å­—ç¬¦ä¸²å‘ç”Ÿå¼‚å¸¸ï¼");
         }
         sb.append(strNum);
         return sb.toString();
     }
 
     /**
-     * Ã¿´ÎÉú³ÉµÄlenÎ»Êı¶¼²»ÏàÍ¬
+     * æ¯æ¬¡ç”Ÿæˆçš„lenä½æ•°éƒ½ä¸ç›¸åŒ
      *
      * @param param
-     * @return ¶¨³¤µÄÊı×Ö
+     * @return å®šé•¿çš„æ•°å­—
      */
     public static int getNotSimple(int[] param, int len) {
         Random rand = new Random();
@@ -165,7 +166,7 @@ public final class RandomUtil {
     }
 
     /**
-     * ´ÓÖ¸¶¨µÄÊı×éÖĞËæ»úÊı×éÖĞµÄÄ³¸öÔªËØ
+     * ä»æŒ‡å®šçš„æ•°ç»„ä¸­éšæœºæ•°ç»„ä¸­çš„æŸä¸ªå…ƒç´ 
      */
     public static <T> T randomItem(T[] param) {
         int index = integer(0, param.length);
@@ -173,7 +174,7 @@ public final class RandomUtil {
     }
 
     /**
-     * ÊµÏÖÒ»¸ö¼òµ¥µÄ×Ö·û´®³Ë·¨
+     * å®ç°ä¸€ä¸ªç®€å•çš„å­—ç¬¦ä¸²ä¹˜æ³•
      * @param str
      * @param multiplication
      * @return
@@ -185,11 +186,11 @@ public final class RandomUtil {
         }
         return buffer.toString();
     }
-    
+ 
     /**
-     * ·µ»ØÒ»¸öUUID
+     * è¿”å›ä¸€ä¸ªUUID
      *
-     * @return Ğ¡Ğ´µÄUUID
+     * @return å°å†™çš„UUID
      */
     public static String uuid() {
         UUID uuid = UUID.randomUUID();
@@ -199,9 +200,9 @@ public final class RandomUtil {
     }
 
     /**
-     * ·µ»ØÒ»¸öUUID
+     * è¿”å›ä¸€ä¸ªUUID
      *
-     * @return ´óĞ´µÄUUID
+     * @return å¤§å†™çš„UUID
      */
     public static String UUID() {
         UUID uuid = UUID.randomUUID();
@@ -211,5 +212,4 @@ public final class RandomUtil {
         return temp.toUpperCase();
     }
 
-    
 }
