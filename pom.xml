@@ -21,6 +21,10 @@
             <artifactId>jchardet</artifactId>
             <version>1.0</version>
         </dependency>
-        
+        <dependency>
+          <groupId>com.ytx</groupId>
+          <artifactId>sdkyuntongxun</artifactId>
+          <version>1.0</version>
+	    </dependency>
    </dependencies>
 </project>
