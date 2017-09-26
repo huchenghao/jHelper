@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 /**
  * 
  * @ClassName: StringHelper
- * @Description: ×Ö·û´®¹¤¾ßÀà£¬Ìá¹©Ò»Ğ©×Ö·û´®Ïà¹ØµÄ±ã½İ·½·¨
+ * @Description: å­—ç¬¦ä¸²å·¥å…·ç±»ï¼Œæä¾›ä¸€äº›å­—ç¬¦ä¸²ç›¸å…³çš„ä¾¿æ·æ–¹æ³•
  * @author: huchenghao
- * @date: 2017Äê9ÔÂ21ÈÕ ÉÏÎç11:03:06
+ * @date: 2017å¹´9æœˆ21æ—¥ ä¸Šåˆ11:03:06
  */
 public class StringHelper {
 	
@@ -107,7 +107,7 @@ public class StringHelper {
     /**
      * 
      * @Title: utf8Encode
-     * @Description: ·µ»ØÒ»¸öutf8µÄ×Ö·û´®
+     * @Description: è¿”å›ä¸€ä¸ªutf8çš„å­—ç¬¦ä¸²
      * @param str
      * @return
      * @return: String
@@ -126,7 +126,7 @@ public class StringHelper {
     /**
      * 
      * @Title: isAllDigital
-     * @Description: ÊÇ·ñÊÇ´¿Êı×Ö
+     * @Description: æ˜¯å¦æ˜¯çº¯æ•°å­—
      * @param str
      * @return
      * @return: boolean
@@ -142,12 +142,6 @@ public class StringHelper {
         }
         return result;
     }
-    
-    
-	
-	public static void main(String[] args) {
-		System.out.println(isAllDigital("123"));
-	}
-	
+   
 	
 }

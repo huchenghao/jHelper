@@ -56,22 +56,5 @@ public final class StreamUtil {
         return is;
     }
 
-    /**
-     * 将流另存为文件
-     */
-    public final static void streamSaveAsFile(InputStream is, File outfile) {
-        try (FileOutputStream fos = new FileOutputStream(outfile)) {
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = is.read(buffer)) > 0) {
-                fos.write(buffer, 0, len);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
 
 }

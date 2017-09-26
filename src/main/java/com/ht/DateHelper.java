@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * 
  * @ClassName: DateHelper
- * @Description: ÈÕÆÚ¹¤¾ßÀà
+ * @Description: æ—¥æœŸå·¥å…·ç±»
  * @author: huchenghao
- * @date: 2017Äê9ÔÂ20ÈÕ ÏÂÎç6:57:23
+ * @date: 2017å¹´9æœˆ20æ—¥ ä¸‹åˆ6:57:23
  */
 public class DateHelper {
 	private static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
@@ -26,7 +26,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: longTimeForYMDHMSStr
-	 * @Description: longÀàĞÍµÄÊ±¼ä´Á×ª»»Îªyyyy-MM-dd hh:mm:ss¸ñÊ½µÄ×Ö·û´®
+	 * @Description: longç±»å‹çš„æ—¶é—´æˆ³è½¬æ¢ä¸ºyyyy-MM-dd hh:mm:ssæ ¼å¼çš„å­—ç¬¦ä¸²
 	 * @param currentTimeMillis
 	 * @return
 	 * @return: String
@@ -39,7 +39,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: formatDateToYMDHMSStr
-	 * @Description: Date¸ñÊ½ÈÕÆÚ×ª»»Îªyyyy-MM-dd hh:mm:ss¸ñÊ½µÄ×Ö·û´®
+	 * @Description: Dateæ ¼å¼æ—¥æœŸè½¬æ¢ä¸ºyyyy-MM-dd hh:mm:ssæ ¼å¼çš„å­—ç¬¦ä¸²
 	 * @param date
 	 * @return
 	 * @return: String
@@ -50,7 +50,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: formatDateToYMDStr
-	 * @Description: Date¸ñÊ½ÈÕÆÚ×ª»»Îªyyyy-MM-dd¸ñÊ½µÄ×Ö·û´®
+	 * @Description: Dateæ ¼å¼æ—¥æœŸè½¬æ¢ä¸ºyyyy-MM-ddæ ¼å¼çš„å­—ç¬¦ä¸²
 	 * @param date
 	 * @return
 	 * @return: String
@@ -61,7 +61,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: formatDate
-	 * @Description: Date¸ñÊ½ÈÕÆÚ×ª»»Îªformat¸ñÊ½µÄ×Ö·û´®
+	 * @Description: Dateæ ¼å¼æ—¥æœŸè½¬æ¢ä¸ºformatæ ¼å¼çš„å­—ç¬¦ä¸²
 	 * @param date
 	 * @param format
 	 * @return
@@ -74,7 +74,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: getTodayStr
-	 * @Description: »ñÈ¡String¸ñÊ½µÄ£¬½ñÌìµÄÈÕÆÚ
+	 * @Description: è·å–Stringæ ¼å¼çš„ï¼Œä»Šå¤©çš„æ—¥æœŸ
 	 * @return
 	 * @return: String
 	 */
@@ -84,7 +84,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: getNowTime
-	 * @Description: »ñÈ¡String¸ñÊ½µÄ£¬½ñÌìµÄyyyy-MM-dd HH:mm:ss
+	 * @Description: è·å–Stringæ ¼å¼çš„ï¼Œä»Šå¤©çš„yyyy-MM-dd HH:mm:ss
 	 * @return
 	 * @return: String
 	 */
@@ -94,7 +94,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: getNowTimeToNo
-	 * @Description:  »ñÈ¡String¸ñÊ½µÄ£¬ÏÖÔÚµÄyyyyMMddHHmmss
+	 * @Description:  è·å–Stringæ ¼å¼çš„ï¼Œç°åœ¨çš„yyyyMMddHHmmss
 	 * @return
 	 * @return: String
 	 */
@@ -105,7 +105,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: comparDate
-	 * @Description: ±È½ÏÁ½¸öDateµÄ´óĞ¡£¬1>2:1;1<2:0;1=null || 2== null:-1
+	 * @Description: æ¯”è¾ƒä¸¤ä¸ªDateçš„å¤§å°ï¼Œ1>2:1;1<2:0;1=null || 2== null:-1
 	 * @param date1
 	 * @param date2
 	 * @return
@@ -123,7 +123,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: parseYMDStrForDate
-	 * @Description: yyyy-MM-dd ¸ñÊ½×Ö·û´®×ª»»ÎªDate¸ñÊ½
+	 * @Description: yyyy-MM-dd æ ¼å¼å­—ç¬¦ä¸²è½¬æ¢ä¸ºDateæ ¼å¼
 	 * @param dateStr
 	 * @return
 	 * @throws ParseException
@@ -135,7 +135,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: parseYMDHMSStrForDate
-	 * @Description: yyyy-MM-dd hh:mm:ss¸ñÊ½×Ö·û´®×ª»»ÎªDate¸ñÊ½
+	 * @Description: yyyy-MM-dd hh:mm:ssæ ¼å¼å­—ç¬¦ä¸²è½¬æ¢ä¸ºDateæ ¼å¼
 	 * @param dateStr
 	 * @return
 	 * @throws ParseException
@@ -147,7 +147,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: parseDate
-	 * @Description: dateStrÈÕÆÚ¸ñÊ½µÄ×Ö·û´®£¬×ª»»Îªformat¸ñÊ½µÄDate
+	 * @Description: dateStræ—¥æœŸæ ¼å¼çš„å­—ç¬¦ä¸²ï¼Œè½¬æ¢ä¸ºformatæ ¼å¼çš„Date
 	 * @param dateStr
 	 * @param format
 	 * @return
@@ -161,7 +161,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: getAmOrPm
-	 * @Description: »ñÈ¡Ö¸¶¨µÄÈÕÆÚÊÇÉÏÎç»¹ÊÇÏÂÎç
+	 * @Description: è·å–æŒ‡å®šçš„æ—¥æœŸæ˜¯ä¸Šåˆè¿˜æ˜¯ä¸‹åˆ
 	 * @param date
 	 * @return
 	 * @return: Integer
@@ -176,7 +176,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByDays
-	 * @Description: µ±Ç°Ê±¼ä+Ö¸¶¨ÌìÊı
+	 * @Description: å½“å‰æ—¶é—´+æŒ‡å®šå¤©æ•°
 	 * @param days
 	 * @return
 	 * @return: String
@@ -189,7 +189,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByDays
-	 * @Description: Ö¸¶¨ÈÕÆÚ×Ö·û´®+ÌìÊı
+	 * @Description: æŒ‡å®šæ—¥æœŸå­—ç¬¦ä¸²+å¤©æ•°
 	 * @param dateStr
 	 * @param days
 	 * @return
@@ -205,7 +205,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByHours
-	 * @Description: Ö¸¶¨Ê±¼ä+hours
+	 * @Description: æŒ‡å®šæ—¶é—´+hours
 	 * @param date
 	 * @param hours
 	 * @return
@@ -220,7 +220,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByMinutes
-	 * @Description: Ö¸¶¨ÈÕÆÚ+minutes
+	 * @Description: æŒ‡å®šæ—¥æœŸ+minutes
 	 * @param date
 	 * @param minutes
 	 * @return
@@ -235,7 +235,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByMonths
-	 * @Description:Ö¸¶¨ÈÕÆÚ+months
+	 * @Description:æŒ‡å®šæ—¥æœŸ+months
 	 * @param date
 	 * @param months
 	 * @return
@@ -250,7 +250,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: addTimeByYears
-	 * @Description: Ö¸¶¨Ê±¼ä+years
+	 * @Description: æŒ‡å®šæ—¶é—´+years
 	 * @param date
 	 * @param years
 	 * @return
@@ -265,7 +265,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: subtractTimeByMonth
-	 * @Description: Ö¸¶¨ÈÕÆÚ-months
+	 * @Description: æŒ‡å®šæ—¥æœŸ-months
 	 * @param date
 	 * @param months
 	 * @return
@@ -281,7 +281,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: subtractTimeByDays
-	 * @Description: Ö¸¶¨Ê±¼ä-days
+	 * @Description: æŒ‡å®šæ—¶é—´-days
 	 * @param date
 	 * @param days
 	 * @return
@@ -296,7 +296,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: subtractTimeByHours
-	 * @Description: Ö¸¶¨Ê±¼ä-hours
+	 * @Description: æŒ‡å®šæ—¶é—´-hours
 	 * @param date
 	 * @param hours
 	 * @return
@@ -312,7 +312,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: getBetweenDate
-	 * @Description: »ñÈ¡Á½¸öÈÕÆÚÖ®¼äÈÕÆÚ °üÀ¨Á½¸öÈÕÆÚ
+	 * @Description: è·å–ä¸¤ä¸ªæ—¥æœŸä¹‹é—´æ—¥æœŸ åŒ…æ‹¬ä¸¤ä¸ªæ—¥æœŸ
 	 * @param from
 	 * @param to
 	 * @return
@@ -323,7 +323,7 @@ public class DateHelper {
 		 List<String> rtnlist=new ArrayList<String>();
 		 Date  fdate=parseYMDStrForDate(from);
 		 Date  edate=parseYMDStrForDate(to);
-		 //Èç¹û¿ªÊ¼ÈÕÆÚ±È½áÊøÈÕÆÚ´ó »¥»»ÈÕÆÚ
+		 //å¦‚æœå¼€å§‹æ—¥æœŸæ¯”ç»“æŸæ—¥æœŸå¤§ äº’æ¢æ—¥æœŸ
         if(edate.getTime()<fdate.getTime()){
        	 Date date=fdate;
        	 fdate=edate;
@@ -345,7 +345,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: subDaysBetweenTwoDate
-	 * @Description: Á½¸öÈÕÆÚÏà²îµÄÌìÊı
+	 * @Description: ä¸¤ä¸ªæ—¥æœŸç›¸å·®çš„å¤©æ•°
 	 * @param longdate
 	 * @param shortdate
 	 * @return
@@ -361,7 +361,7 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: subMinsBetweenTwoDate
-	 * @Description: Á½¸öÈÕÆÚÏà²îµÄ·ÖÖÓÊı
+	 * @Description: ä¸¤ä¸ªæ—¥æœŸç›¸å·®çš„åˆ†é’Ÿæ•°
 	 * @param longdate
 	 * @param shortdate
 	 * @return
@@ -378,19 +378,19 @@ public class DateHelper {
 	/**
 	 * 
 	 * @Title: getWeek
-	 * @Description: »ñÈ¡ÊÇÖÜ¼¸
+	 * @Description: è·å–æ˜¯å‘¨å‡ 
 	 * @param weekday
 	 * @return
 	 * @return: String
 	 */
 	public static String getWeek(int weekday){
-		String dayNames[] = {"ĞÇÆÚÈÕ","ĞÇÆÚÒ»","ĞÇÆÚ¶ş","ĞÇÆÚÈı","ĞÇÆÚËÄ","ĞÇÆÚÎå","ĞÇÆÚÁù"};
+		String dayNames[] = {"æ˜ŸæœŸæ—¥","æ˜ŸæœŸä¸€","æ˜ŸæœŸäºŒ","æ˜ŸæœŸä¸‰","æ˜ŸæœŸå››","æ˜ŸæœŸäº”","æ˜ŸæœŸå…­"};
 		return dayNames[weekday];
 	}
 	/**
 	 * 
 	 * @Title: todayWeek
-	 * @Description: ½ñÌìÊÇÖÜ¼¸
+	 * @Description: ä»Šå¤©æ˜¯å‘¨å‡ 
 	 * @return
 	 * @return: String
 	 */
@@ -405,14 +405,5 @@ public class DateHelper {
 	}
 	
 	
-	
-	
-	
-	
-	
-	public static void main(String[] args) throws ParseException {
-		System.out.println(todayWeek());
-		
-	}
 	
 }

@@ -13,15 +13,15 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 /**
  * 
  * @ClassName: ChinesHelper
- * @Description: ÖĞÎÄ´¦ÀíµÄ¹¤¾ß³£ÓÃ·½·¨
+ * @Description: ä¸­æ–‡å¤„ç†çš„å·¥å…·å¸¸ç”¨æ–¹æ³•
  * @author: huchenghao
- * @date: 2017Äê9ÔÂ25ÈÕ ÏÂÎç6:05:18
+ * @date: 2017å¹´9æœˆ25æ—¥ ä¸‹åˆ6:05:18
  */
 public class ChinesHelper {
 	/**
 	 * 
 	 * @Title: getPingYin
-	 * @Description: ½«×Ö·û´®ÖĞµÄÖĞÎÄ×ª»¯ÎªÆ´Òô,ÆäËû×Ö·û²»±ä
+	 * @Description: å°†å­—ç¬¦ä¸²ä¸­çš„ä¸­æ–‡è½¬åŒ–ä¸ºæ‹¼éŸ³,å…¶ä»–å­—ç¬¦ä¸å˜
 	 * @param inputString
 	 * @return
 	 * @return: String
@@ -50,7 +50,7 @@ public class ChinesHelper {
     /**
      * 
      * @Title: getFirstSpell
-     * @Description: »ñÈ¡ºº×Ö´®Æ´ÒôÊ××ÖÄ¸£¬Ó¢ÎÄ×Ö·û²»±ä
+     * @Description: è·å–æ±‰å­—ä¸²æ‹¼éŸ³é¦–å­—æ¯ï¼Œè‹±æ–‡å­—ç¬¦ä¸å˜
      * @param chinese
      * @return
      * @return: String
@@ -80,7 +80,7 @@ public class ChinesHelper {
     /**
      * 
      * @Title: getFullSpell
-     * @Description: »ñÈ¡ºº×Ö´®Æ´Òô£¬Ó¢ÎÄ×Ö·û²»±ä
+     * @Description: è·å–æ±‰å­—ä¸²æ‹¼éŸ³ï¼Œè‹±æ–‡å­—ç¬¦ä¸å˜
      * @param chinese
      * @return
      * @return: String
@@ -107,7 +107,7 @@ public class ChinesHelper {
     /**
      * 
      * @Title: isChinese
-     * @Description: ÊÇ·ñ°üº¬ÖĞÎÄ
+     * @Description: æ˜¯å¦åŒ…å«ä¸­æ–‡
      * @param strName
      * @return
      * @return: boolean
@@ -123,7 +123,7 @@ public class ChinesHelper {
         return false;
     }
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇÖĞÎÄ
+     * åˆ¤æ–­æ˜¯å¦æ˜¯ä¸­æ–‡
      *
      * @param c
      * @return
@@ -137,7 +137,7 @@ public class ChinesHelper {
     }
 
     /**
-     * »ñÈ¡Ò»¸ö×Ö·û´®ÖĞÖĞÎÄ×Ö·ûµÄ¸öÊı
+     * è·å–ä¸€ä¸ªå­—ç¬¦ä¸²ä¸­ä¸­æ–‡å­—ç¬¦çš„ä¸ªæ•°
      */
     public final static int ChineseLength(String str) {
         Pattern p = Pattern.compile("[\u4E00-\u9FA5]+");
@@ -151,7 +151,7 @@ public class ChinesHelper {
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇÂÒÂë
+     * åˆ¤æ–­æ˜¯å¦æ˜¯ä¹±ç 
      *
      * @param strName
      * @return
