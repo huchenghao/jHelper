@@ -1,4 +1,4 @@
-package com.ht;
+package com.ht.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
