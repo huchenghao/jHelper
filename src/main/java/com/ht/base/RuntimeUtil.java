@@ -18,21 +18,22 @@ public class RuntimeUtil {
 	private static AtomicInteger shutdownHookThreadIndex = new AtomicInteger(0);
 
 	/////// RuntimeMXBean相关 //////
-
+	
+	public static void main(String[] args) {
+		System.out.println(RuntimeUtil.getCallerClass());
+	}
 	/**
 	 * 获得当前进程的PID
 	 * 
 	 * 当失败时返回-1
 	 */
 	public static int getPid() {
-
 		// format: "pid@hostname"
 		String jvmName = ManagementFactory.getRuntimeMXBean().getName();
 		String[] split = jvmName.split("@");
 		if (split.length != 2) {
 			return -1;
 		}
-
 		try {
 			return Integer.parseInt(split[0]);
 		} catch (Exception e) { // NOSONAR

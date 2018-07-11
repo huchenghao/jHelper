@@ -4,13 +4,15 @@ import java.util.Arrays;
 
 import com.google.common.base.Objects;
 import com.ht.annotation.Nullable;
-
 /**
- * 1. Object打印优化，主要解决数组的打印
  * 
- * 2. 多个对象的HashCode串联
+ * @ClassName: ObjectUtil
+ * @Description: 1.Object打印优化，主要解决数组的打印<br/>2.多个对象的HashCode串联
+ * @author: huchenghao
+ * @date: 2018年7月11日 下午3:03:22
  */
 public class ObjectUtil {
+	
 	private static final String NULL = "null";
 
 	/**
@@ -28,18 +30,21 @@ public class ObjectUtil {
 	}
 
 	/**
-	 * 对象的toString(), 处理了对象为数组的情况，JDK的默认toString()只打数组的地址如 "[Ljava.lang.Integer;@490d6c15.
+	 * @Title: toPrettyString
+	 * @Description: 对象的toString()<br/>
+	 * 				  处理了对象为数组的情况，JDK的默认toString()只打数组的地址如 "[Ljava.lang.Integer;@490d6c15.
+	 * @param value
+	 * @return
+	 * @author huchenghao
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toPrettyString(Object value) {
 		if (value == null) {
 			return NULL;
 		}
-
 		Class<?> type = value.getClass();
-
 		if (type.isArray()) {
 			Class componentType = type.getComponentType();
-
 			if (componentType.isPrimitive()) {
 				return primitiveArrayToString(value, componentType);
 			} else {
@@ -50,10 +55,9 @@ public class ObjectUtil {
 			// 为了处理元素是数组的情况，同样需要重载
 			return collectionToString(value);
 		}
-
 		return value.toString();
 	}
-
+	
 	private static String primitiveArrayToString(Object value, Class componentType) {
 		StringBuilder sb = new StringBuilder();
 
