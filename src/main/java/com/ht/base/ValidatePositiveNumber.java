@@ -1,15 +1,13 @@
 package com.ht.base;
 
 import com.ht.annotation.Nullable;
-
 /**
- * 
- * @ClassName: MoreValidate
- * @Description: 校验为正数 || 校验为非负数
+ * @ClassName: ValidatePositiveNumber
+ * @Description: <h1>校验为正数(包含0)</h1> || <h1>校验为非负数</h1>
  * @author: huchenghao
  * @date: 2018年7月11日 下午2:56:53
  */
-public class MoreValidate {
+public class ValidatePositiveNumber {
 	
 	/**
 	 * 
