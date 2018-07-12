@@ -4,7 +4,11 @@ import java.io.File;
 
 import org.apache.commons.lang3.SystemUtils;
 /**
- * 关于系统设定，平台信息的变量(via Common Lang SystemUtils)
+ * 
+ * @ClassName: Platforms
+ * @Description: 关于系统设定，平台信息的变量(via Common Lang SystemUtils)
+ * @author: huchenghao
+ * @date: 2018年7月12日 下午12:18:38
  */
 public class Platforms {
 	// 文件路径分隔符

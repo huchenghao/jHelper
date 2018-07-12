@@ -5,25 +5,33 @@ import java.util.Arrays;
 import com.google.common.base.Objects;
 import com.ht.annotation.Nullable;
 /**
- * 
  * @ClassName: ObjectUtil
  * @Description: 1.Object打印优化，主要解决数组的打印<br/>2.多个对象的HashCode串联
  * @author: huchenghao
  * @date: 2018年7月11日 下午3:03:22
  */
 public class ObjectUtil {
-	
 	private static final String NULL = "null";
-
+	
 	/**
-	 * JDK7 引入的Null安全的equals
+	 * @Title: equals
+	 * @Description: 判断两个对象是否相等
+	 * @param a
+	 * @param b
+	 * @return
+	 * @author huchenghao
 	 */
 	public static boolean equals(@Nullable Object a, @Nullable Object b) {
 		return Objects.equal(a, b);
 	}
-
+	
 	/**
-	 * 多个对象的HashCode串联, 组成新的HashCode
+	 * 
+	 * @Title: hashCode
+	 * @Description: 多个对象的HashCode串联, 组成新的HashCode
+	 * @param objects
+	 * @return
+	 * @author huchenghao
 	 */
 	public static int hashCode(Object... objects) {
 		return Arrays.hashCode(objects);
@@ -32,7 +40,10 @@ public class ObjectUtil {
 	/**
 	 * @Title: toPrettyString
 	 * @Description: 对象的toString()<br/>
-	 * 				  处理了对象为数组的情况，JDK的默认toString()只打数组的地址如 "[Ljava.lang.Integer;@490d6c15.
+	 * 				 value为数组时会，返回拼接字符串。类似：[a, b, c]
+	 * 				 value为某个实体对象时，返回对象地址。类似：com.ht.test.User@15db9742
+	 * 				 value为某个集合时(集合为泛型String)，返回拼接字符串。类似：{a,b}
+	 * 				 value为某个集合时(集合为对象User)，返回拼接字符串。类似：  {com.ht.test.User@15db9742,com.ht.test.User@6d06d69c}
 	 * @param value
 	 * @return
 	 * @author huchenghao
