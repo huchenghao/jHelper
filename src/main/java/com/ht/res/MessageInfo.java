@@ -1,4 +1,4 @@
-package com.ht.common;
+package com.ht.res;
 
 public class MessageInfo {
 
