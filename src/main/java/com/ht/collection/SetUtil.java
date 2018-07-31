@@ -12,28 +12,37 @@ import com.google.common.collect.Sets;
 import com.ht.annotation.Nullable;
 import com.ht.collection.type.ConcurrentHashSet;
 
+
 /**
- * 关于Set的工具集合.
  * 
- * 1. 各种Set的创建函数, 包括ConcurrentHashSet
- * 
- * 2. 集合运算函数(交集，并集等,from guava)
+ * @ClassName: SetUtil
+ * @Description: Set的工具集合.
+ * @author: huchenghao
+ * @date: 2018年7月31日 下午6:11:56
  */
 public class SetUtil {
 
+	
 	/**
-	 * 根据等号左边的类型，构造类型正确的HashSet.
 	 * 
+	 * @Title: newHashSet
+	 * @Description: 根据等号左边的类型，构造类型正确的HashSet.
 	 * @see com.google.common.collect.Sets#newHashSet()
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> HashSet<T> newHashSet() {
 		return new HashSet<T>();
 	}
 
 	/**
-	 * 根据等号左边的类型，构造类型正确的HashSet, 并初始化元素.
 	 * 
+	 * @Title: newHashSet
+	 * @Description: 根据等号左边的类型，构造类型正确的HashSet, 并初始化元素.
 	 * @see com.google.common.collect.Sets#newHashSet(Object...)
+	 * @param elements
+	 * @return
+	 * @author huchenghao
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> HashSet<T> newHashSet(T... elements) {
@@ -41,27 +50,38 @@ public class SetUtil {
 	}
 
 	/**
-	 * HashSet涉及HashMap大小，因此建议在构造时传入需要初始的集合，其他如TreeSet不需要.
 	 * 
+	 * @Title: newHashSet
+	 * @Description: HashSet涉及HashMap大小，因此建议在构造时传入需要初始的集合，其他如TreeSet不需要.
 	 * @see com.google.common.collect.Sets#newHashSet(Iterable)
+	 * @param elements
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> HashSet<T> newHashSet(Iterable<? extends T> elements) {
 		return Sets.newHashSet(elements);
 	}
 
 	/**
-	 * 创建HashSet并设置初始大小，因为HashSet内部是HashMap，会计算LoadFactor后的真实大小.
 	 * 
+	 * @Title: newHashSetWithCapacity
+	 * @Description: 创建HashSet并设置初始大小，因为HashSet内部是HashMap，会计算LoadFactor后的真实大小.
 	 * @see com.google.common.collect.Sets#newHashSetWithExpectedSize(int)
+	 * @param expectedSize
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> HashSet<T> newHashSetWithCapacity(int expectedSize) {
 		return Sets.newHashSetWithExpectedSize(expectedSize);
 	}
 
 	/**
-	 * 根据等号左边的类型，构造类型正确的TreeSet, 通过实现了Comparable的元素自身进行排序.
 	 * 
+	 * @Title: newSortedSet
+	 * @Description: 根据等号左边的类型，构造类型正确的TreeSet, 通过实现了Comparable的元素自身进行排序.
 	 * @see com.google.common.collect.Sets#newTreeSet()
+	 * @return
+	 * @author huchenghao
 	 */
 	@SuppressWarnings("rawtypes")
 	public static <T extends Comparable> TreeSet<T> newSortedSet() {
@@ -69,16 +89,24 @@ public class SetUtil {
 	}
 
 	/**
-	 * 根据等号左边的类型，构造类型正确的TreeSet, 并设置comparator.
 	 * 
+	 * @Title: newSortedSet
+	 * @Description: 根据等号左边的类型，构造类型正确的TreeSet, 并设置comparator.
 	 * @see com.google.common.collect.Sets#newTreeSet(Comparator)
+	 * @param comparator
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> TreeSet<T> newSortedSet(@Nullable Comparator<? super T> comparator) {
 		return Sets.newTreeSet(comparator);
 	}
 
 	/**
-	 * 根据等号左边的类型，构造类型正确的ConcurrentHashSet
+	 * 
+	 * @Title: newConcurrentHashSet
+	 * @Description: 根据等号左边的类型，构造类型正确的ConcurrentHashSet
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> ConcurrentHashSet<T> newConcurrentHashSet() {
 		return new ConcurrentHashSet<T>();
@@ -87,11 +115,12 @@ public class SetUtil {
 	///////////////// from JDK Collections的常用构造函数 ///////////////////
 
 	/**
-	 * 返回一个空的结构特殊的Set，节约空间.
 	 * 
-	 * 注意返回的Set不可写, 写入会抛出UnsupportedOperationException.
-	 * 
-	 * @see java.util.Collections#emptySet()
+	 * @Title: emptySet
+	 * @Description: 返回一个空的结构特殊的Set，节约空间.
+	 * 				 注意返回的Set不可写, 写入会抛出UnsupportedOperationException.
+	 * @return
+	 * @author huchenghao
 	 */
 	public static final <T> Set<T> emptySet() {
 		return Collections.emptySet();

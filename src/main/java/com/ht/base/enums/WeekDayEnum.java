@@ -1,6 +1,6 @@
 package com.ht.base.enums;
 
-public enum WeekDay {
+public enum WeekDayEnum {
 	Mon("Monday",1), 
 	Tue("Tuesday",2), 
 	Wed("Wednesday",3), 
@@ -13,7 +13,7 @@ public enum WeekDay {
 	private final String day;
 	private final int index;
 	  
-	private WeekDay(String day,int index) {
+	private WeekDayEnum(String day,int index) {
 	     this.day = day;
 	     this.index = index;
 	}
@@ -22,8 +22,16 @@ public enum WeekDay {
 	public String toString() {
 		return this.index+"_"+this.day;
 	}
+	/**
+	 * 
+	 * @Title: getWeekName
+	 * @Description: 周N就传N 如想要获取周一,则传1
+	 * @param index
+	 * @return
+	 * @author huchenghao
+	 */
 	public static String getWeekName(int index){
-		for(WeekDay day:WeekDay.values()){
+		for(WeekDayEnum day:WeekDayEnum.values()){
 			if(day.getIndex() == index){
 				return day.day;
 			}

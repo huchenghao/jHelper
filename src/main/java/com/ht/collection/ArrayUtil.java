@@ -14,24 +14,26 @@ import com.google.common.primitives.Longs;
 import com.ht.annotation.Nullable;
 
 /**
- * 数组工具类.
- * 
- * 1. 创建Array的函数
- * 
- * 2. 数组的乱序与contact相加
- * 
- * 3. 从Array转换到Guava的底层为原子类型的List
- * 
- * JDK Arrays的其他函数，如sort(), toString() 请直接调用
- * 
- * Common Lang ArrayUtils的其他函数，如subarray(),reverse(),indexOf(), 请直接调用
+ * @ClassName: ArrayUtil
+ * @Description: 数组工具类.
+ * 				 1. 创建Array的函数
+ * 				 2. 数组的乱序与contact相加
+ * 				 3. 从Array转换到Guava的底层为原子类型的List
+ * 				 JDK Arrays的其他函数，如sort(), toString() 请直接调用
+ * 				 Common Lang ArrayUtils的其他函数，如subarray(),reverse(),indexOf(), 请直接调用
+ * @author: huchenghao
+ * @date: 2018年7月31日 下午4:51:34
  */
 public class ArrayUtil {
 
 	/**
-	 * 传入类型与大小创建数组.
 	 * 
-	 * Array.newInstance()的性能并不差
+	 * @Title: newArray
+	 * @Description: 创建数组 Array.newInstance()的性能并不差
+	 * @param type 数组的类型
+	 * @param length 数组的长度
+	 * @return
+	 * @author huchenghao
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T[] newArray(Class<T> type, int length) {
@@ -39,28 +41,28 @@ public class ArrayUtil {
 	}
 
 	/**
-	 * 从collection转为Array, 以 list.toArray(new String[0]); 最快 不需要创建list.size()的数组.
 	 * 
-	 * 本函数等价于list.toArray(new String[0]); 用户也可以直接用后者.
-	 * 
-	 * https://shipilev.net/blog/2016/arrays-wisdom-ancients/
+	 * @Title: toArray
+	 * @Description: 从collection转为Array, 以 list.toArray(new String[0]); 最快 不需要创建list.size()的数组.
+	 *               本函数等价于list.toArray(new String[0]); 也可以直接用后者.
+	 * @param col
+	 * @param type
+	 * @return
+	 * @author huchenghao
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T[] toArray(Collection<T> col, Class<T> type) {
 		return col.toArray((T[]) Array.newInstance(type, 0));
 	}
 
+	
 	/**
-	 * Swaps the two specified elements in the specified array.
-	 */
-	private static void swap(Object[] arr, int i, int j) {
-		Object tmp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = tmp;
-	}
-
-	/**
-	 * 将传入的数组乱序
+	 * 
+	 * @Title: shuffle
+	 * @Description: 将传入的数组乱序
+	 * @param array
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> T[] shuffle(T[] array) {
 		if (array != null && array.length > 1) {
@@ -71,8 +73,15 @@ public class ArrayUtil {
 		}
 	}
 
+	
 	/**
-	 * 将传入的数组乱序
+	 * 
+	 * @Title: shuffle
+	 * @Description: 将传入的数组乱序
+	 * @param array
+	 * @param random
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> T[] shuffle(T[] array, Random random) {
 		if (array != null && array.length > 1 && random != null) {
@@ -82,65 +91,88 @@ public class ArrayUtil {
 		}
 		return array;
 	}
+	
+	/**
+	 * Swaps the two specified elements in the specified array.
+	 */
+	private static void swap(Object[] arr, int i, int j) {
+		Object tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+	}
 
 	/**
-	 * 添加元素到数组头.
+	 * 
+	 * @Title: concat
+	 * @Description: 添加元素到数组头.
+	 * @param element
+	 * @param array
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> T[] concat(@Nullable T element, T[] array) {
 		return ObjectArrays.concat(element, array);
 	}
 
 	/**
-	 * 添加元素到数组末尾.
+	 * 
+	 * @Title: concat
+	 * @Description: 添加元素到数组末尾.
+	 * @param array
+	 * @param element
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> T[] concat(T[] array, @Nullable T element) {
 		return ObjectArrays.concat(array, element);
 	}
-
-	////////////////// guava Array 转换为底层为原子类型的List ///////////
 	/**
-	 * 原版将数组转换为List.
-	 * 
-	 * 注意转换后的List不能写入, 否则抛出UnsupportedOperationException
-	 * 
-	 * @see java.util.Arrays#asList(Object...)
+	 * @Title: asList
+	 * @Description: 原版将数组转换为List.注意转换后的List不能写入, 否则抛出UnsupportedOperationException
+	 * 				 @see java.util.Arrays#asList(Object...)
+	 * @param a
+	 * @return
+	 * @author huchenghao
 	 */
 	public static <T> List<T> asList(T... a) {
 		return Arrays.asList(a);
 	}
-
 	/**
-	 * Arrays.asList()的加强版, 返回一个底层为原始类型int的List
-	 * 
-	 * 与保存Integer相比节约空间，同时只在读取数据时AutoBoxing.
-	 * 
-	 * @see java.util.Arrays#asList(Object...)
-	 * @see com.google.common.primitives.Ints#asList(int...)
-	 * 
+	 * @Title: intAsList
+	 * @Description: Arrays.asList()的加强版, 返回一个底层为原始类型int的List
+	 * 				 与保存Integer相比节约空间，同时只在读取数据时AutoBoxing.
+	 * 				@see java.util.Arrays#asList(Object...)
+	 * 				@see com.google.common.primitives.Ints#asList(int...)
+	 * @param backingArray
+	 * @return
+	 * @author huchenghao
 	 */
 	public static List<Integer> intAsList(int... backingArray) {
 		return Ints.asList(backingArray);
 	}
-
 	/**
-	 * Arrays.asList()的加强版, 返回一个底层为原始类型long的List
-	 * 
-	 * 与保存Long相比节约空间，同时只在读取数据时AutoBoxing.
-	 * 
-	 * @see java.util.Arrays#asList(Object...)
-	 * @see com.google.common.primitives.Longs#asList(long...)
+	 * @Title: longAsList
+	 * @Description: Arrays.asList()的加强版, 返回一个底层为原始类型long的List
+	 * 				 与保存Long相比节约空间，同时只在读取数据时AutoBoxing.
+	 * 				@see java.util.Arrays#asList(Object...)
+	 * 				@see com.google.common.primitives.Longs#asList(long...)
+	 * @param backingArray
+	 * @return
+	 * @author huchenghao
 	 */
 	public static List<Long> longAsList(long... backingArray) {
 		return Longs.asList(backingArray);
 	}
 
 	/**
-	 * Arrays.asList()的加强版, 返回一个底层为原始类型double的List
-	 * 
-	 * 与保存Double相比节约空间，同时也避免了AutoBoxing.
-	 * 
-	 * @see java.util.Arrays#asList(Object...)
-	 * @see com.google.common.primitives.Doubles#asList(double...)
+	 * @Title: doubleAsList
+	 * @Description: Arrays.asList()的加强版, 返回一个底层为原始类型double的List
+	 * 				与保存Double相比节约空间，同时也避免了AutoBoxing.
+	 * 				@see java.util.Arrays#asList(Object...)
+	 * 				@see com.google.common.primitives.Doubles#asList(double...)
+	 * @param backingArray
+	 * @return
+	 * @author huchenghao
 	 */
 	public static List<Double> doubleAsList(double... backingArray) {
 		return Doubles.asList(backingArray);
