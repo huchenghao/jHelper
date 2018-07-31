@@ -13,9 +13,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.reflect.ConstructorUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 
-import com.ht.base.ExceptionUtil;
 import com.ht.base.ObjectUtil;
-import com.ht.base.type.UncheckedException;
 
 
 /**
@@ -295,8 +293,9 @@ public class ReflectionUtil {
 		try {
 			return (T) method.invoke(obj, args);
 		} catch (Exception e) {
-			throw ExceptionUtil.unwrapAndUnchecked(e);
+			return null;
 		}
+		
 	}
 
 	////////// 构造函数 ////////
@@ -308,7 +307,7 @@ public class ReflectionUtil {
 		try {
 			return ConstructorUtils.invokeConstructor(cls, args);
 		} catch (Exception e) {
-			throw ExceptionUtil.unwrapAndUnchecked(e);
+			return  null;
 		}
 	}
 
@@ -346,6 +345,6 @@ public class ReflectionUtil {
 		} else if (e instanceof RuntimeException) {
 			return (RuntimeException) e;
 		}
-		return new UncheckedException(e);
+		return (RuntimeException) new Exception(e);
 	}
 }

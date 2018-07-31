@@ -7,10 +7,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class Codec {
 
-	
-	
-	
-	
 	public static String MD5Code(String pass) {
 		MessageDigest messageDigest = null;
 		try {

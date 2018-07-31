@@ -1,4 +1,4 @@
-package com.ht.utils;
+package com.ht.text;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
