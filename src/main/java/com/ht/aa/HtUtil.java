@@ -4,6 +4,7 @@ public class HtUtil {
 	
 	public static String getStr(){
 		String str = "aa";
+		String str1 = "bb";
 		return str;
 	}
 }
