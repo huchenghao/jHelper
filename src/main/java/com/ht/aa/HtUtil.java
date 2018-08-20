@@ -7,4 +7,8 @@ public class HtUtil {
 		String str1 = "bb";
 		return str;
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }
