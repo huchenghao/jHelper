@@ -13,3 +13,4 @@ public class UUIDHashCode {
 		return new SimpleDateFormat("HHmmss").format(new Date().getTime())+String.format("%011d", hashCodeV);
 	}
 }
+ 
