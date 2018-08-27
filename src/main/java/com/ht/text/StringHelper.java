@@ -1,6 +1,7 @@
 package com.ht.text;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
  * @date: 2017年9月21日 上午11:03:06
  */
 public class StringHelper {
+	
 	
 	private StringHelper(){
 		throw new AssertionError();
@@ -142,6 +144,15 @@ public class StringHelper {
         }
         return result;
     }
-   
+    
+	public static Double mul(Double v1,Double v2){
+
+		BigDecimal b1 = new BigDecimal(v1.toString());
+
+		BigDecimal b2 = new BigDecimal(v2.toString());
+
+		return b1.multiply(b2).doubleValue();
+
+	}
 	
 }
