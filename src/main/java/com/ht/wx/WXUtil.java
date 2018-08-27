@@ -37,6 +37,7 @@ import org.dom4j.io.SAXReader;
 import net.sf.json.JSONObject;
 
 import com.ht.properties.PropertyUtil;
+import com.ht.properties.WXPayPropertyUtil;
 import com.ht.res.MessageInfo;
 import com.ht.text.StringHelper;
 
@@ -211,7 +212,7 @@ public class WXUtil {
         String reuqestXml = HttpXmlUtils.getRequestXml(parameters);
        
         KeyStore keyStore  = KeyStore.getInstance("PKCS12");
-        FileInputStream instream = new FileInputStream(new File(PropertyUtil.apiclient_cert_file_url));//放退款证书的路径
+        FileInputStream instream = new FileInputStream(new File(WXPayPropertyUtil.apiclient_cert_file_url));//放退款证书的路径
         try {
             keyStore.load(instream, WeixinConfigUtils.mch_id.toCharArray());
         } finally {

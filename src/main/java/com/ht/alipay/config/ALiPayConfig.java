@@ -1,5 +1,6 @@
 package com.ht.alipay.config;
 
+import com.ht.properties.AlipayPropertyUtil;
 import com.ht.properties.PropertyUtil;
 
 
@@ -9,20 +10,20 @@ import com.ht.properties.PropertyUtil;
  */
 public class ALiPayConfig {
     // 合作身份者ID，以2088开头由16位纯数字组成的字符串
-    public static String partner = PropertyUtil.partner;
+    public static String partner = AlipayPropertyUtil.partner;
     //appid
-    public static String appid = PropertyUtil.appid;
+    public static String appid = AlipayPropertyUtil.appid;
     //商户支付宝账号
-    public static String seller_email= PropertyUtil.seller_email;
+    public static String seller_email= AlipayPropertyUtil.seller_email;
     //商户真实姓名
-    public static String account_name = PropertyUtil.account_name;
+    public static String account_name = AlipayPropertyUtil.account_name;
     // 商户的私钥RSA
-    public static String private_key = PropertyUtil.private_key;
+    public static String private_key = AlipayPropertyUtil.private_key;
     
     //支付宝的公钥  RSA
     //public static String ali_public_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCZWrNPCbklT6cX2RtIn5eqC+0Q7SPCKJNMfwtl3UzYZ8lCn9TvAboAJv1k7CstFDBlKU++m6cWDnarSedTvT/vHTZfgt0hX+oAXVYpNmoOsMC7DsZsMogj946Sq9ReeP79ByvDITkInq7IOY9uH5qPAnx+b73JUPQT4kTLcjMvnQIDAQAB";
     
-    public static String ali_public_key = PropertyUtil.ali_public_key;
+    public static String ali_public_key = AlipayPropertyUtil.ali_public_key;
     //public static String ali_public_key ="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi40N9LX9Gmb/6DQiRvdgrYEsHdHAtqNsypg+dfVAjVLdonZ9AXIpJjFp1JRCi/NsJu16yOllWtZiXM7QMAwiFq7YxVkKbu5wLbl4dBzXefDonRykHRxozlIGga6C6s0jCwmGmijAWhYUmfFHU7gnx/oeHKv4gMzIy/P7g64G5xeumacCWcK//2r82yZNFoRvgh7mI4nXsM+0HKashTpuMLL/O1/trcjC/0wv71Nuj4O9jXnSrkZdhLC7belaqQ0fS3IJ+Vr9/HhgfkpxiYP1ln46KGu/xiqt8eJRnJDH5Ak+X2TuNpXPw8qtD9YivxHHooRka566ttQ0Ji4H8kmNYwIDAQAB";
     
     //签名方式 (支付回调签名方式)

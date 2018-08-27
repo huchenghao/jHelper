@@ -1,16 +1,16 @@
 package com.ht.wx;
 
-import org.springframework.beans.factory.annotation.Value;
 
 import com.ht.properties.PropertyUtil;
+import com.ht.properties.WXPayPropertyUtil;
 
 
 
 public class WeixinConfigUtils {
 	
 	
-	public static String appid = "wxebb2da2afa29a5bb";
-	public static String mch_id = "1452880302";
+	public static String appid = WXPayPropertyUtil.weixin_appid;
+	public static String mch_id = WXPayPropertyUtil.weixin_mch_id;
 	public static String notify_url = PropertyUtil.baseUrl+"/wxpayment/callback";
 	
 	
