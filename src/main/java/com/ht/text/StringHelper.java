@@ -155,4 +155,15 @@ public class StringHelper {
 
 	}
 	
+	public static String getRandomCodeFour(){
+		 String str ="0123456789";
+		 char[] chs = str.toCharArray();
+		 String tem = "";
+		 for(int count=1; count<=4;count++){
+			int n = (int)Math.floor(10*Math.random());
+			tem += chs[n];
+		 }
+		 return tem;
+	 }
+	
 }
