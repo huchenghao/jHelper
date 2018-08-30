@@ -1,4 +1,4 @@
-package com.ht.alipay.util;
+package com.ht.pay.alipay;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
