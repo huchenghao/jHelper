@@ -1,4 +1,4 @@
-package com.ht.wx;
+package com.ht.pay.wx.util;
 
 
 
@@ -132,16 +132,12 @@ public class ParseXMLUtils {
 			// 通过输入源构造一个Document
 			org.jdom.Document doc;
 			doc = (org.jdom.Document) sb.build(source);
-
 			org.jdom.Element root = doc.getRootElement();// 指向根节点
+			@SuppressWarnings("unchecked")
 			List<org.jdom.Element> list = root.getChildren();
-			
 			if(list!=null&&list.size()>0){
 				for (org.jdom.Element element : list) {
-					System.out.println("key是："+element.getName()+"，值是："+element.getText());
-					//map.put(element.getName(), element.getText());
 					json+="\""+element.getName()+"\":\""+element.getText()+"\",";
-
 				}
 			}
 			json=json.substring(0, json.lastIndexOf(","));

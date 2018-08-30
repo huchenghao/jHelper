@@ -1,4 +1,4 @@
-package com.ht.wx;
+package com.ht.pay.wx.util;
 
 
 public class Unifiedorder {private String appid;//微信分配的公众账号ID（企业号corpid即为此appId）,例如：wxd678efh567hg6787

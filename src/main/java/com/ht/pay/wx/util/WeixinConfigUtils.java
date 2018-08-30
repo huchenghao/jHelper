@@ -1,4 +1,4 @@
-package com.ht.wx;
+package com.ht.pay.wx.util;
 
 
 import com.ht.properties.PropertyUtil;
