@@ -47,11 +47,14 @@
 		    <artifactId>dozer</artifactId>
 		    <version>5.4.0</version>
 		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
 		<dependency>
-          <groupId>com.alipay</groupId>
-          <artifactId>sdkjava</artifactId>
-          <version>1.0</version>
-	    </dependency>
+		    <groupId>com.alipay.sdk</groupId>
+		    <artifactId>alipay-sdk-java</artifactId>
+		    <version>3.3.49.ALL</version>
+		</dependency>
 	    <dependency>
 		    <groupId>org.jdom</groupId>
 		    <artifactId>jdom</artifactId>
