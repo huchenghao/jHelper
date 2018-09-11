@@ -1,4 +1,6 @@
 package com.ht.time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ import com.ht.annotation.NotNull;
  */
 public class DateUtil {
 
+	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
 	public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND; // Number of milliseconds in a standard minute.
 	public static final long MILLIS_PER_HOUR = 60 * MILLIS_PER_MINUTE; // Number of milliseconds in a standard hour.
@@ -412,4 +415,22 @@ public class DateUtil {
 
 		return MONTH_LENGTH[month];
 	}
+	
+	/**
+	 * 
+	* @Title: parseYMDHMSStrToDate 
+	* @Description: YMDHMSStr转换为Date 
+	* @param @param dateStr
+	* @param @return
+	* @param @throws ParseException    设定文件 
+	* @return Date    返回类型 Date
+	* @throws
+	 */
+	public static Date parseYMDHMSStrToDate(String dateStr) throws ParseException{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+			return simpleDateFormat.parse(dateStr);
+	}
+	
+	
+	
 }
