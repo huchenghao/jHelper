@@ -15,7 +15,8 @@ import com.ht.annotation.NotNull;
  * 在不方便使用joda-time时，使用本类降低Date处理的复杂度与性能消耗, 封装Common Lang及移植Jodd的最常用日期方法
  */
 public class DateUtil {
-
+	
+	public static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
 	public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND; // Number of milliseconds in a standard minute.
@@ -53,6 +54,21 @@ public class DateUtil {
 	}
 
 	//////////// 往前往后滚动时间//////////////
+	
+	
+	/**
+	 * 
+	 * @Title: addTimeByYears
+	 * @Description: TODO
+	 * @param date
+	 * @param amount
+	 * @return
+	 * @author huchenghao
+	 */
+	public static Date addTimeByYears(@NotNull final Date date, int amount) {
+		return DateUtils.addYears(date, amount);
+	}
+	
 
 	/**
 	 * 加一月
@@ -429,6 +445,30 @@ public class DateUtil {
 	public static Date parseYMDHMSStrToDate(String dateStr) throws ParseException{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 			return simpleDateFormat.parse(dateStr);
+	}
+	/**
+	 * 
+	 * @Title: formatDateToYMDHMSStr
+	 * @Description: date转换成YYYY-MM-DD格式的字符串
+	 * @param date
+	 * @return
+	 * @author huchenghao
+	 */
+	public static String formatDateToYMDHMSStr(Date date){
+		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
+		return df.format(date);
+	}
+	/**
+	 * 
+	 * @Title: parseDateToYMDArray
+	 * @Description: yyyy-MM-dd 转换成年月日数组
+	 * @param date
+	 * @return
+	 * @author huchenghao
+	 */
+	public static String[] parseDateToYMDArray(Date date){
+		String date_str = formatDateToYMDHMSStr(date);
+		return date_str.split("-");
 	}
 	
 	
