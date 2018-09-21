@@ -1,5 +1,6 @@
 package com.ht.number;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import com.google.common.math.IntMath;
@@ -154,4 +155,19 @@ public class MathUtil {
 	public static long sqrt(long x, RoundingMode mode) {
 		return LongMath.sqrt(x, mode);
 	}
+	
+	/**
+	 * 只舍不入
+	 * @Title: onlyAddNotSubtract
+	 * @Description: TODO
+	 * @param bd
+	 * @return
+	 * @author gs
+	 */
+	public static BigDecimal onlySubtractNotAdd(BigDecimal bd){
+		bd = (bd == null ? BigDecimal.ZERO : bd);
+		double ceil = Math.floor(bd.doubleValue());
+		return new BigDecimal(ceil);
+	}
+	
 }

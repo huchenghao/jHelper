@@ -127,7 +127,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * 加一分钟
+	 * 加分钟
 	 */
 	public static Date addMinutes(@NotNull final Date date, int amount) {
 		return DateUtils.addMinutes(date, amount);
