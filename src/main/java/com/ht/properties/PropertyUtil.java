@@ -41,12 +41,7 @@ public class PropertyUtil {
 		PropertyUtil.picHttp = picHttp;
 	}
 	
-	public static boolean jpush_ios_mode;
 	
-	@Value("${jpush.ios.mode}") 
-	public  void setJpush_ios_mode(boolean jpush_ios_mode) {
-		PropertyUtil.jpush_ios_mode = jpush_ios_mode;
-	}
 	
 	public static String spring_profiles_active;
 	
