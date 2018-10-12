@@ -471,6 +471,20 @@ public class DateUtil {
 		return date_str.split("-");
 	}
 	
+	/**
+	 * 根据传入规则,格式化日期为字符串
+	 * @Title: formatDate
+	 * @Description: TODO
+	 * @param date
+	 * @param format
+	 * @return
+	 * @author gs
+	 */
+	public static String formatDate(Date date, String format){
+		SimpleDateFormat df = new SimpleDateFormat(format);
+		return df.format(date);
+	}
+	
 	
 	
 }
