@@ -472,8 +472,6 @@ public class DateUtil {
 	}
 	
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
 	 * 根据传入规则,格式化日期为字符串
 	 * @Title: formatDate
 	 * @Description: TODO
@@ -487,6 +485,7 @@ public class DateUtil {
 		return df.format(date);
 	}
 	
+
 	 /**
 	 * 
 	 * @Title: formatDateToYMD
@@ -499,6 +498,5 @@ public class DateUtil {
 		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
 		return df.format(date);
 	}
-	
 	
 }
