@@ -473,6 +473,7 @@ public class DateUtil {
 	
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * 根据传入规则,格式化日期为字符串
 	 * @Title: formatDate
 	 * @Description: TODO
@@ -487,6 +488,7 @@ public class DateUtil {
 	}
 	
 	 /**
+	 * 
 	 * @Title: formatDateToYMD
 	 * @Description: date转换成YYYY-MM-DD格式的字符串
 	 * @param date
