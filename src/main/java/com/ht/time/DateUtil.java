@@ -472,6 +472,7 @@ public class DateUtil {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * 根据传入规则,格式化日期为字符串
 	 * @Title: formatDate
 	 * @Description: TODO
@@ -485,6 +486,17 @@ public class DateUtil {
 		return df.format(date);
 	}
 	
+	 /**
+	 * @Title: formatDateToYMD
+	 * @Description: date转换成YYYY-MM-DD格式的字符串
+	 * @param date
+	 * @return
+	 * @author huchenghao
+	 */
+	public static String formatDateToYMD(Date date){
+		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
+		return df.format(date);
+	}
 	
 	
 }
