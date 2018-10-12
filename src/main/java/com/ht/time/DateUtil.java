@@ -471,6 +471,18 @@ public class DateUtil {
 		return date_str.split("-");
 	}
 	
+	/**
+	 * 
+	 * @Title: formatDateToYMD
+	 * @Description: date转换成YYYY-MM-DD格式的字符串
+	 * @param date
+	 * @return
+	 * @author huchenghao
+	 */
+	public static String formatDateToYMD(Date date){
+		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
+		return df.format(date);
+	}
 	
 	
 }
