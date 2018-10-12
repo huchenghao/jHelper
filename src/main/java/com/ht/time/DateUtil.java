@@ -14,7 +14,7 @@ import com.ht.annotation.NotNull;
  * 
  * 在不方便使用joda-time时，使用本类降低Date处理的复杂度与性能消耗, 封装Common Lang及移植Jodd的最常用日期方法
  */
-public class DateUtil2 {
+public class DateUtil {
 	
 	public static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
@@ -303,7 +303,7 @@ public class DateUtil2 {
 	 * 2017-1-20 07:33:23, 则返回2017-1-16 00:00:00
 	 */
 	public static Date beginOfWeek(@NotNull final Date date) {
-		return DateUtils.truncate(DateUtil2.subDays(date, DateUtil2.getDayOfWeek(date) - 1), Calendar.DATE);
+		return DateUtils.truncate(DateUtil.subDays(date, DateUtil.getDayOfWeek(date) - 1), Calendar.DATE);
 	}
 
 	/**
@@ -317,7 +317,7 @@ public class DateUtil2 {
 	 * 2017-1-23 07:33:23, 则返回2017-1-22 00:00:00
 	 */
 	public static Date nextWeek(@NotNull final Date date) {
-		return DateUtils.truncate(DateUtil2.addDays(date, 8 - DateUtil2.getDayOfWeek(date)), Calendar.DATE);
+		return DateUtils.truncate(DateUtil.addDays(date, 8 - DateUtil.getDayOfWeek(date)), Calendar.DATE);
 	}
 
 	/**
