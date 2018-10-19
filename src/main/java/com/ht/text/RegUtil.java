@@ -110,9 +110,7 @@ public final class RegUtil {
     private static      Pattern floatNumericPattern     = Pattern.compile("^[0-9\\-\\.]+$");
     private static      Pattern abcPattern              = Pattern.compile("^[a-z|A-Z]+$");
 
-    public static void main(String[] args) {
-		System.out.println(isMatche("372916198912108116", REG_IDENTIFICATION_CARD));
-	}
+    
     
     /**
      * 判断是否数字表示

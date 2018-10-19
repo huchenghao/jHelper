@@ -164,23 +164,7 @@ public class SnowflakeIdWorker {
 	}
 	
 	// ==============================Test=============================================
-	/**
-	 * 
-	 * @Title: main
-	 * @Description: TODO
-	 * @param args
-	 * @author huchenghao
-	 */
-	public static void main(String[] args) {
-		SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
-		for (int i = 0; i < 2; i++) {
-			long id = idWorker.nextId();
-			System.out.println(id);
-			System.out.println("Long.toBinaryString:"+Long.toBinaryString(id));
-		
-			
-		}
-	}
+	
 	
 	
 	

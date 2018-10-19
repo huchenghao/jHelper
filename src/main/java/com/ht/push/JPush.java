@@ -88,15 +88,7 @@ public class JPush {
 		}
 	}
 	
-	public static void main(String[] args) {
-		try {
-			sendAllPlatform("hello", "我是type", "我是typeId", new String[]{"5f052e2a7be148f9b1398d4be6918a54"});
-		} catch (APIConnectionException e) {
-			e.printStackTrace();
-		} catch (APIRequestException e) {
-			e.printStackTrace();
-		}
-	}
+	
 	
 	
 
