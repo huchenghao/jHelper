@@ -3,6 +3,7 @@ package com.ht.text;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -165,5 +166,21 @@ public class StringHelper {
 		 }
 		 return tem;
 	 }
+	/**
+	 * 
+	 * @Title: getNumberIdByUUId
+	 * @Description: 生成唯一Id
+	 * @return
+	 * @author huchenghao
+	 */
+	public static String getNumberIdByUUId(){
+		int machineId = 1;//最大支持1-9个集群机器部署
+		int hashCodev = UUID.randomUUID().toString().hashCode();
+		if(hashCodev < 0){
+			hashCodev = -hashCodev;//有可能是负数
+		}
+		//"%011d"的意思：0代表不足位数的补0，这样可以确保相同的位数，11是位数也就是要得到到的字符串长度是11，d代表数字。
+		return machineId + String.format("%011d", hashCodev);
+    }
 	
 }
