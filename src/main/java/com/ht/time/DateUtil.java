@@ -498,4 +498,10 @@ public class DateUtil {
 		return df.format(date);
 	}
 	
+	public static String getNowTimeToNo(){
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+		String now = df.format(new Date());
+		return now;
+	}
+	
 }
