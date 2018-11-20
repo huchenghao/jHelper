@@ -503,5 +503,17 @@ public class DateUtil {
 		String now = df.format(new Date());
 		return now;
 	}
+	/**
+	 * 
+	 * @Title: timestampToDate
+	 * @Description: 时间戳转日期 
+	 * @param timestamp
+	 * @return
+	 * @author huchenghao
+	 */
+	public static Date timestampToDate(String timestamp){
+        long time = Long.parseLong(timestamp);
+        return new Date(time);
+	}
 	
 }
