@@ -3,8 +3,6 @@ package com.ht.number;
 import java.math.BigDecimal;
 
 public class Arith {
-	
-	
 
 	/**
 	 * 提供精确的加法运算。
@@ -76,9 +74,49 @@ public class Arith {
 		if (scale < 0) {
 			throw new IllegalArgumentException("The scale must be a positive integer or zero");
 		}
-//		BigDecimal b = new BigDecimal(Double.toString(v));
+		// BigDecimal b = new BigDecimal(Double.toString(v));
 		BigDecimal one = new BigDecimal("1");
 		return b.divide(one, scale, BigDecimal.ROUND_HALF_UP);
 	}
+	
+	/**
+	 * 如果传入数字的两位小数,大于.01 那么加1,否则舍去
+	 * 例如:  13.0123862 --> 进1  ---> 14
+	 *        13.0023862 --> 舍  ---> 13
+	 * @Title: enterOrabandon
+	 * @Description: TODO
+	 * @param b
+	 * @return
+	 * @author gs
+	 * @date 2018年11月22日 下午12:11:00
+	 */
+	public static BigDecimal enterOrabandon(BigDecimal b) {
+		String bStr = b.toString();
+		String[] split = bStr.split("\\.");
+		if (split.length <= 1) {
+			return b;
+		}
+		if (split[1].length() >= 2) {
+			String substring0 = split[1].substring(0, 1);
+//			char charAtO = split[1].charAt(0);
+			System.out.println(substring0);
+//			char charAt1 = split[1].charAt(1);
+			String substring1 = split[1].substring(1, 2);
+			System.out.println(substring1);
+			if (Integer.valueOf(substring0) > 0 || Integer.valueOf(substring1) > 0) {
+				return new BigDecimal(Math.ceil(b.doubleValue()));
+			}else{
+				return new BigDecimal(b.longValue());
+			}
+		}else{
+			if (Integer.valueOf(split[1].substring(0, 1)) > 0) {
+				return new BigDecimal(Math.ceil(b.doubleValue()));
+			}else{
+				return new BigDecimal(b.longValue());
+			}
+		}
+	}
+	
+	
 
 }
