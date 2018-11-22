@@ -515,5 +515,53 @@ public class DateUtil {
         long time = Long.parseLong(timestamp);
         return new Date(time);
 	}
+	/**
+	 * 
+	 * @Title: twoDateDifferDay
+	 * @Description: 两个日期相差N天
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 * @author huchenghao
+	 * @date: 2018年11月22日 下午5:26:38
+	 */
+	public static Long twoDateDifferDay(Date startDate,Date endDate){
+		long nd = 1000 * 24 * 60 * 60;
+	    long diff = endDate.getTime() - startDate.getTime();
+		return  diff / nd;
+	}
+	/**
+	 * 
+	 * @Title: twoDateDifferHour
+	 * @Description: 两个日期相差N小时
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 * @author huchenghao
+	 * @date: 2018年11月22日 下午5:27:51
+	 */
+	public static Long twoDateDifferHour(Date startDate,Date endDate){
+		long nd = 1000 * 24 * 60 * 60;
+		long nh = 1000 * 60 * 60;
+	    long diff = endDate.getTime() - startDate.getTime();
+		return diff % nd / nh;
+	}
+	/**
+	 * @Title: twoDateDifferMinute
+	 * @Description: 两个日期相差N分钟
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 * @author huchenghao
+	 * @date: 2018年11月22日 下午5:29:00
+	 */
+	public static Long twoDateDifferMinute(Date startDate,Date endDate){
+		long nd = 1000 * 24 * 60 * 60;
+		long nh = 1000 * 60 * 60;
+		long nm = 1000 * 60;
+	    long diff = endDate.getTime() - startDate.getTime();
+		return diff % nd % nh / nm;
+	}
+	
 	
 }
