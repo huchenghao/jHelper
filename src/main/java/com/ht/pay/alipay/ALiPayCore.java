@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -69,14 +70,14 @@ public class ALiPayCore {
 	/**
 	 * 
 	 * @Title: checkAliPayParam
-	 * @Description: JAVA服务端验证异步通知信息参数
+	 * @Description: JAVA服务端验证异步通知信息参数以及返回参数
 	 * @param request
 	 * @param aliPayMap
 	 * @return
 	 * @author huchenghao
 	 * @throws AlipayApiException 
 	 */
-	public static boolean checkAliPayParam(HttpServletRequest request,Map<String,String> aliPayMap) throws AlipayApiException{
+	public static JSONObject checkAliPayParam(HttpServletRequest request,Map<String,String> aliPayMap) throws AlipayApiException{
 		//获取支付宝POST过来反馈信息
 		Map<String,String> params = new HashMap<String,String>();
 		Map requestParams = request.getParameterMap();
@@ -93,7 +94,10 @@ public class ALiPayCore {
 		}
 		//切记alipaypublickey是支付宝的公钥，请去open.alipay.com对应应用下查看。
 		boolean flag = AlipaySignature.rsaCheckV1(params, aliPayMap.get("alipay_public_key"), "utf-8","RSA2");
-		return flag;
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("flag", flag);
+		jsonObject.put("params", params);
+		return jsonObject;
 	}
 	
 	
