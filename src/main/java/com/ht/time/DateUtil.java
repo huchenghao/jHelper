@@ -563,5 +563,63 @@ public class DateUtil {
 		return diff % nd % nh / nm;
 	}
 	
+	/**
+	 * 获取传入日期所属季度的最小时间
+	 * @Title: belongQuarterMaxDate
+	 * @Description: TODO
+	 * @param date
+	 * @return
+	 * @author gs
+	 * @date 2018年11月26日 下午5:30:03
+	 */
+	public static String belongQuarterMinDate(Date date){
+		int month = date.getMonth();
+		Date now = new Date();
+		now.setHours(0);
+		now.setMinutes(0);
+		now.setSeconds(0);
+		now.setDate(1);
+		if (month == 1 || month == 2 || month == 3) {
+			now.setMonth(1-1);
+		}else if (month == 4 || month == 5 || month == 6) {
+			now.setMonth(4-1);
+		}else if (month == 7 || month == 8 || month == 9) {
+			now.setMonth(7-1);
+		}else{
+			now.setMonth(10-1);
+		}
+		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+	}
+	
+	/**
+	 * 获取传入日期所属季度的最大时间
+	 * @Title: belongQuarterMinDate
+	 * @Description: TODO
+	 * @param date
+	 * @return
+	 * @author gs
+	 * @date 2018年11月26日 下午5:56:06
+	 */
+	public static String belongQuarterMaxDate(Date date){
+		int month = date.getMonth();
+		Date now = new Date();
+		now.setHours(23);
+		now.setMinutes(59);
+		now.setSeconds(59);
+		if (month == 0 || month == 1 || month == 2) {
+			now.setMonth(3-1);
+			now.setDate(31);
+		}else if (month == 3 || month == 4 || month == 5) {
+			now.setMonth(6-1);
+			now.setDate(30);
+		}else if (month == 6 || month == 7 || month == 8) {
+			now.setMonth(9-1);
+			now.setDate(30);
+		}else{
+			now.setMonth(12-1);
+			now.setDate(31);
+		}
+		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+	}
 	
 }
