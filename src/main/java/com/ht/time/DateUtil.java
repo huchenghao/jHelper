@@ -572,7 +572,7 @@ public class DateUtil {
 	 * @author gs
 	 * @date 2018年11月26日 下午5:30:03
 	 */
-	public static String belongQuarterMinDate(Date date){
+	public static Date belongQuarterMinDate(Date date){
 		int month = date.getMonth();
 		Date now = new Date();
 		now.setHours(0);
@@ -588,7 +588,8 @@ public class DateUtil {
 		}else{
 			now.setMonth(10-1);
 		}
-		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+//		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+		return now;
 	}
 	
 	/**
@@ -600,7 +601,7 @@ public class DateUtil {
 	 * @author gs
 	 * @date 2018年11月26日 下午5:56:06
 	 */
-	public static String belongQuarterMaxDate(Date date){
+	public static Date belongQuarterMaxDate(Date date){
 		int month = date.getMonth();
 		Date now = new Date();
 		now.setHours(23);
@@ -619,7 +620,8 @@ public class DateUtil {
 			now.setMonth(12-1);
 			now.setDate(31);
 		}
-		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+//		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+		return now;
 	}
 	
 }
