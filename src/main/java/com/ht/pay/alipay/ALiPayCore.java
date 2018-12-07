@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
@@ -28,12 +29,27 @@ import com.alipay.api.response.AlipayTradeAppPayResponse;
  * alipay-sdk-java-3.3.1.jar
  */
 public class ALiPayCore {
-	private static Logger logger = Logger.getLogger(ALiPayCore.class);
+	private final static Logger logger = Logger.getLogger(ALiPayCore.class);
 	/**
 	 * 
 	 * @Title: createAliPayStr
 	 * @Description: JAVA服务端SDK生成APP支付订单信息
 	 * @param aliPayMap
+	 * [必传]URL:支付宝网关（固定）<br/>
+	 * [必传]APP_ID:APPID即创建应用后生成<br/>
+	 * [必传]APP_PRIVATE_KEY：开发者应用私钥，由开发者自己生成<br/>
+	 * [必传]FORMAT：参数返回格式，只支持json<br/>
+	 * [必传]CHARSET：请求和签名使用的字符编码格式，支持GBK和UTF-8<br/>
+	 * [必传]ALIPAY_PUBLIC_KEY：支付宝公钥，由支付宝生成<br/>
+	 * [必传]SIGN_TYPE：商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2<br/>
+	 * [非必传]body:对一笔交易的具体描述信息。如果是多种商品，请将商品描述字符串累加传给body。<br/>
+	 * [必传]subject：商品的标题/交易标题/订单标题/订单关键字等。<br/>
+	 * [必传]out_trade_no：商户网站唯一订单号	<br/>
+	 * [必传]timeout_express：该笔订单允许的最晚付款时间，逾期将关闭交易。
+	 * 						     取值范围：1m～15d。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 
+	 * 						     该参数数值不接受小数点， 如 1.5h，可转换为 90m。注：若为空，则默认为15d。<br/>
+	 * [必传]total_amount：订单总金额，单位为元，精确到小数点后两位，取值范围[0.01,100000000]<br/>
+	 * [必传]product_code：销售产品码，商家和支付宝签约的产品码，为固定值QUICK_MSECURITY_PAY<br/>
 	 * @return
 	 * @author huchenghao
 	 * @throws AlipayApiException 
@@ -42,7 +58,7 @@ public class ALiPayCore {
 	public static String createAliPayStr(Map<String, String> aliPayMap)
 			throws Exception{
 		AlipayClient alipayClient = new DefaultAlipayClient(
-				aliPayMap.get("url"),// 正式环境支付宝网关https://openapi.alipay.com/gateway.do如果是沙箱环境需更改成https://openapi.alipaydev.com/gateway.do
+				aliPayMap.get("url"),
 				aliPayMap.get("app_id"), 
 				aliPayMap.get("app_private_key"),
 				"json", "utf-8", aliPayMap.get("alipay_public_key"), "RSA2");
@@ -53,18 +69,18 @@ public class ALiPayCore {
 		model.setBody(aliPayMap.get("body"));
 		model.setSubject(aliPayMap.get("subject"));
 		model.setOutTradeNo(aliPayMap.get("out_trade_no"));// 请保证OutTradeNo值每次保证唯一
-		model.setTimeoutExpress("30m");
+		model.setTimeoutExpress("");
 		model.setTotalAmount(aliPayMap.get("total_fee"));
 		model.setProductCode("QUICK_MSECURITY_PAY");
 		request.setBizModel(model);
 		request.setNotifyUrl(aliPayMap.get("notify_url"));
 		try {
-			// 这里和普通的接口调用不同，使用的是sdkExecute
-			AlipayTradeAppPayResponse response = alipayClient.sdkExecute(request);
+			AlipayTradeAppPayResponse response = alipayClient.sdkExecute(request);// 这里和普通的接口调用不同，使用的是sdkExecute
 			return response.getBody();
 		} catch (AlipayApiException e) {
+			logger.error("createAliPayStr-error,out_trade_no:["+aliPayMap.get("out_trade_no")+"]");
 			e.printStackTrace();
-			return "";
+			return "error";
 		}
 	}
 	/**
@@ -80,8 +96,8 @@ public class ALiPayCore {
 	public static JSONObject checkAliPayParam(HttpServletRequest request,Map<String,String> aliPayMap) throws AlipayApiException{
 		//获取支付宝POST过来反馈信息
 		Map<String,String> params = new HashMap<String,String>();
-		Map requestParams = request.getParameterMap();
-		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+		Map<String, String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
 		    String name = (String) iter.next();
 		    String[] values = (String[]) requestParams.get(name);
 		    String valueStr = "";
