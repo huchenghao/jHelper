@@ -108,7 +108,8 @@ public class WxPayCore {
 	    Map<String,Object> map = Maps.newLinkedHashMap();
         map.put("sign", sign_result);
         map.put("timestamp", System.currentTimeMillis()/1000);
-        return ResultGenerator.genSuccessResult(map).toString();
+//        return ResultGenerator.genSuccessResult(map).toString();
+        return map.toString();
        
 	}
 }
