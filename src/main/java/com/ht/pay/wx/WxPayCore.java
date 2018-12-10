@@ -105,7 +105,7 @@ public class WxPayCore {
        
         String sign_result = WXSignUtils.createSign("UTF-8", parameters2,wxPayMap.get("key"));
 	    
-        JSONObject re_json_str = new JSONObject();
+        JSONObject re_json_str = JSONObject.parseObject(jsonStr);
         re_json_str.put("sign", sign_result);
         re_json_str.put("timestamp", System.currentTimeMillis()/1000);
         return re_json_str.toJSONString();
