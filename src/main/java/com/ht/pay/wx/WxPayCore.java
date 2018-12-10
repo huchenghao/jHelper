@@ -105,11 +105,14 @@ public class WxPayCore {
         parameters2.put("timestamp", System.currentTimeMillis()/1000);
        
         String sign_result = WXSignUtils.createSign("UTF-8", parameters2,wxPayMap.get("key"));
-	    Map<String,Object> map = Maps.newLinkedHashMap();
+	    /*Map<String,Object> map = Maps.newLinkedHashMap();
         map.put("sign", sign_result);
-        map.put("timestamp", System.currentTimeMillis()/1000);
+        map.put("timestamp", System.currentTimeMillis()/1000);*/
 //        return ResultGenerator.genSuccessResult(map).toString();
-        return map.toString();
+        JSONObject re_json_str = new JSONObject();
+        re_json_str.put("sign", sign_result);
+        re_json_str.put("timestamp", System.currentTimeMillis()/1000);
+        return re_json_str.toJSONString();
        
 	}
 }
