@@ -5,13 +5,12 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
 import com.ht.pay.wx.util.HttpXmlUtils;
 import com.ht.pay.wx.util.ParseXMLUtils;
 import com.ht.pay.wx.util.RandCharsUtils;
 import com.ht.pay.wx.util.Unifiedorder;
 import com.ht.pay.wx.util.WXSignUtils;
-import com.ht.res.ResultGenerator;
+import com.ht.res.MessageInfo;
 
 
 
@@ -103,10 +102,20 @@ public class WxPayCore {
         parameters2.put("package", "Sign=WXPay");
         parameters2.put("prepayid", prepay_id2);
         parameters2.put("timestamp", System.currentTimeMillis()/1000);
+       
         String sign_result = WXSignUtils.createSign("UTF-8", parameters2,wxPayMap.get("key"));
-        parameters2.put("sign", sign_result);
-	    JSONObject  j = (JSONObject) JSONObject.toJSON(parameters2);
-        return j.toJSONString();
+	    /*Map<String,Object> map = Maps.newLinkedHashMap();
+        map.put("sign", sign_result);
+        map.put("timestamp", System.currentTimeMillis()/1000);*/
+//        return ResultGenerator.genSuccessResult(map).toString();
+        JSONObject re_json_str = new JSONObject();
+        re_json_str.put("sign", sign_result);
+        re_json_str.put("timestamp", System.currentTimeMillis()/1000);
+        MessageInfo info = new MessageInfo();
+        info.setCode("0");
+		info.setMsg("");
+		info.setResult(re_json_str);
+        return JSONObject.toJSONString(info);
        
 	}
 }
