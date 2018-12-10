@@ -76,7 +76,7 @@ public class WxPayCore {
         unifiedorder.setDetail(wxPayMap.get("detail"));
         unifiedorder.setAttach(wxPayMap.get("attach"));
         unifiedorder.setOut_trade_no(wxPayMap.get("out_trade_no"));
-        unifiedorder.setTotal_fee(Integer.parseInt(wxPayMap.get("out_trade_no")));
+        unifiedorder.setTotal_fee(Integer.parseInt(wxPayMap.get("total_fee")));
         unifiedorder.setSpbill_create_ip(wxPayMap.get("spbill_create_ip"));
         unifiedorder.setTime_start(time_start);
         unifiedorder.setTime_expire(time_expire);
