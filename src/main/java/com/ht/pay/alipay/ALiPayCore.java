@@ -109,7 +109,7 @@ public class ALiPayCore {
 			params.put(name, valueStr);
 		}
 		//切记alipaypublickey是支付宝的公钥，请去open.alipay.com对应应用下查看。
-		boolean flag = AlipaySignature.rsaCheckV2(params, aliPayMap.get("alipay_public_key"), "utf-8","RSA2");
+		boolean flag = AlipaySignature.rsaCheckV2(params, aliPayMap.get("alipay_rsa_check_public_key"), "utf-8","RSA2");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("flag", flag);
 		jsonObject.put("params", params);
