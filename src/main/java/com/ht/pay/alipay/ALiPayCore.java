@@ -1,6 +1,7 @@
 package com.ht.pay.alipay;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -17,7 +18,9 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
+import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
+import com.alipay.api.response.AlipayTradeRefundResponse;
 
 /**
  * 
@@ -57,8 +60,7 @@ public class ALiPayCore {
 	 */
 	public static String createAliPayStr(Map<String, String> aliPayMap)
 			throws Exception{
-		AlipayClient alipayClient = new DefaultAlipayClient(
-				aliPayMap.get("url"),
+		AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do",
 				aliPayMap.get("app_id"), 
 				aliPayMap.get("app_private_key"),
 				"json", "utf-8", aliPayMap.get("alipay_public_key"), "RSA2");
@@ -82,6 +84,65 @@ public class ALiPayCore {
 			e.printStackTrace();
 			return "error";
 		}
+	}
+	/** 
+	* @Title: refundAliPayStr 
+	* @Description: 退款
+	* @param aliPayMap 
+	* @author 大都督
+	* @date 2018年12月14日
+	* @return void
+	 * @throws AlipayApiException 
+	*/
+	public static String refundAliPayStr(Map<String, String> aliPayMap) throws AlipayApiException {
+		AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do",
+				aliPayMap.get("app_id"),
+				aliPayMap.get("app_private_key"),
+				"json", "utf-8",aliPayMap.get("alipay_public_key"),"RSA2");
+		AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
+		request.setBizContent("{" +
+		"\"out_trade_no\":\""+aliPayMap.get("out_trade_no")+"\"," +
+		"\"trade_no\":\"\"," +
+		"\"refund_amount\":"+new BigDecimal(aliPayMap.get("refund_amount"))+"," +
+		"\"refund_currency\":\"\"," +
+		"\"refund_reason\":\""+aliPayMap.get("refund_reason")+"\"," +
+		"\"out_request_no\":\""+aliPayMap.get("out_request_no")+"\"," +
+		"\"operator_id\":\"\"," +
+		"\"store_id\":\"\"," +
+		"\"terminal_id\":\"\"," +
+		"\"goods_detail\":[{" +
+		"        \"goods_id\":\"\"," +
+		"		\"alipay_goods_id\":\"\"," +
+		"		\"goods_name\":\"\"," +
+		"		\"quantity\":," +
+		"		\"price\":," +
+		"		\"goods_category\":\"\"," +
+		"		\"categories_tree\":\"\"," +
+		"		\"body\":\"\"," +
+		"		\"show_url\":\"\"" +
+		"        }]," +
+		"\"refund_royalty_parameters\":[{" +
+		"        \"royalty_type\":\"transfer\"," +
+		"		 \"trans_out\":\"\"," +
+		"		\"trans_out_type\":\"\"," +
+		"		\"trans_in_type\":\"\"," +
+		"		\"trans_in\":\"\"," +
+		"		\"amount\":," +
+		"		\"amount_percentage\":," +
+		"		\"desc\":\"\"" +
+		"        }]," +
+		"\"org_pid\":\"\"" +
+		"  }");
+		AlipayTradeRefundResponse response = alipayClient.execute(request);
+		System.out.println("ALiPayCore:::::::response.getParams()===="+response.getParams());
+		if(response.isSuccess()){
+			System.out.println("REFUND:SUCCESS");
+			return "SUCCESS";
+		} else {
+			System.out.println("REFUND:FAIL");
+			return "FAIL";
+		}
+		
 	}
 	/**
 	 * 
@@ -115,6 +176,7 @@ public class ALiPayCore {
 		jsonObject.put("params", params);
 		return jsonObject;
 	}
+	
 	
 	
 }
