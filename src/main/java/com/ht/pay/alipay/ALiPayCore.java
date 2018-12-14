@@ -98,7 +98,7 @@ public class ALiPayCore {
 		AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do",
 				aliPayMap.get("app_id"),
 				aliPayMap.get("app_private_key"),
-				"json", "utf-8",aliPayMap.get("alipay.alipay_rsa_check_public_key"),"RSA2");
+				"json", "utf-8",aliPayMap.get("alipay_rsa_check_public_key"),"RSA2");
 		AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
 		request.setBizContent("{" +
 		"\"out_trade_no\":\""+aliPayMap.get("out_trade_no")+"\"," +
