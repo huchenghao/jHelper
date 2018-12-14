@@ -165,7 +165,7 @@ public class WxPayCore {
 	       String reuqestXml = HttpXmlUtils.getRequestXml(parameters);
 	      
 	       KeyStore keyStore  = KeyStore.getInstance("PKCS12");
-	       FileInputStream instream = new FileInputStream(new File("/opt/app/hongzhuangcert/apiclient_cert.p12"));//放退款证书的路径
+	       FileInputStream instream = new FileInputStream(new File(wxPayMap.get("apiclient_cert_url")));//放退款证书的路径
 	       try {
 	           keyStore.load(instream, wxPayMap.get("mch_id").toCharArray());
 	       } finally {
