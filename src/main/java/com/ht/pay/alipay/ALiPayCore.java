@@ -106,40 +106,14 @@ public class ALiPayCore {
 		"\"refund_amount\":"+new BigDecimal(aliPayMap.get("refund_amount"))+"," +
 		"\"refund_currency\":\"\"," +
 		"\"refund_reason\":\""+aliPayMap.get("refund_reason")+"\"," +
-		"\"out_request_no\":\""+aliPayMap.get("out_request_no")+"\"," +
-		"\"operator_id\":\"\"," +
-		"\"store_id\":\"\"," +
-		"\"terminal_id\":\"\"," +
-		"\"goods_detail\":[{" +
-		"        \"goods_id\":\"\"," +
-		"		\"alipay_goods_id\":\"\"," +
-		"		\"goods_name\":\"\"," +
-		"		\"quantity\":," +
-		"		\"price\":," +
-		"		\"goods_category\":\"\"," +
-		"		\"categories_tree\":\"\"," +
-		"		\"body\":\"\"," +
-		"		\"show_url\":\"\"" +
-		"        }]," +
-		"\"refund_royalty_parameters\":[{" +
-		"        \"royalty_type\":\"transfer\"," +
-		"		 \"trans_out\":\"\"," +
-		"		\"trans_out_type\":\"\"," +
-		"		\"trans_in_type\":\"\"," +
-		"		\"trans_in\":\"\"," +
-		"		\"amount\":," +
-		"		\"amount_percentage\":," +
-		"		\"desc\":\"\"" +
-		"        }]," +
-		"\"org_pid\":\"\"" +
-		"  }");
+		"\"out_request_no\":\""+aliPayMap.get("out_request_no")+"\"}");
 		AlipayTradeRefundResponse response = alipayClient.execute(request);
 		System.out.println("ALiPayCore:::::::response.getParams()===="+response.getParams());
 		if(response.isSuccess()){
 			System.out.println("REFUND:SUCCESS");
 			return "SUCCESS";
 		} else {
-			System.out.println("REFUND:FAIL");
+			System.out.println("REFUND:FAIL ");
 			return "FAIL";
 		}
 		
