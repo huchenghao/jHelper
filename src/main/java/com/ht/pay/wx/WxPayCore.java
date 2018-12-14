@@ -1,8 +1,33 @@
 package com.ht.pay.wx;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.security.KeyStore;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ht.pay.wx.util.HttpXmlUtils;
@@ -102,7 +127,7 @@ public class WxPayCore {
         parameters2.put("package", "Sign=WXPay");
         parameters2.put("prepayid", prepay_id2);
         parameters2.put("timestamp", System.currentTimeMillis()/1000);
-       
+        
         String sign_result = WXSignUtils.createSign("UTF-8", parameters2,wxPayMap.get("key"));
 	    
         JSONObject re_json_str = JSONObject.parseObject(jsonStr);
@@ -111,4 +136,87 @@ public class WxPayCore {
         return re_json_str.toJSONString();
        
 	}
+
+	/** 
+	* @Title: refund 
+	* @Description: 退款
+	* @param wxPayMap
+	* @return 
+	* @author 大都督
+	* @date 2018年12月14日
+	* @return String
+	 * @throws Exception 
+	 * @throws CertificateException 
+	 * @throws NoSuchAlgorithmException 
+	*/
+	public static String refund(Map<String, String> wxPayMap) throws NoSuchAlgorithmException, CertificateException, Exception {
+		   SortedMap<Object,Object> parameters = new TreeMap<Object,Object>();
+	       parameters.put("appid", wxPayMap.get("appid"));
+	       parameters.put("mch_id", wxPayMap.get("mch_id"));
+	       parameters.put("nonce_str", RandCharsUtils.getRandomString(32));
+	      //在notify_url中解析微信返回的信息获取到 transaction_id，此项不是必填，详细请看上图文档
+	      //parameters.put("transaction_id", "微信支付订单中调用统一接口后微信返回的 transaction_id");
+	       parameters.put("out_trade_no", wxPayMap.get("out_trade_no"));
+	       parameters.put("out_refund_no", wxPayMap.get("refundNo"));//我们自己设定的退款申请号，约束为UK
+	       parameters.put("total_fee", wxPayMap.get("total_fee")) ; //单位为分
+	       parameters.put("refund_fee",wxPayMap.get("refund_fee")); //单位为分
+	       String sign =  WXSignUtils.createSign("UTF-8", parameters,wxPayMap.get("key"));
+	       parameters.put("sign", sign);
+	       String reuqestXml = HttpXmlUtils.getRequestXml(parameters);
+	      
+	       KeyStore keyStore  = KeyStore.getInstance("PKCS12");
+	       FileInputStream instream = new FileInputStream(new File("/opt/app/hongzhuangcert/apiclient_cert.p12"));//放退款证书的路径
+	       try {
+	           keyStore.load(instream, wxPayMap.get("mch_id").toCharArray());
+	       } finally {
+	           instream.close();
+	       }
+			 SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, wxPayMap.get("mch_id").toCharArray()).build();
+	       SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+	               sslcontext,
+	               new String[] { "TLSv1" },
+	               null,
+	               SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+	       CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+	       try {
+	           HttpPost httpPost = new HttpPost("https://api.mch.weixin.qq.com/secapi/pay/refund");//退款接口
+	           System.out.println("executing request" + httpPost.getRequestLine());
+	           StringEntity  reqEntity  = new StringEntity(reuqestXml);
+	           // 设置类型 
+	           reqEntity.setContentType("application/x-www-form-urlencoded"); 
+	           httpPost.setEntity(reqEntity);
+	           CloseableHttpResponse response = httpclient.execute(httpPost);
+	           try {
+	               HttpEntity entity = response.getEntity();
+
+	               System.out.println("----------------------------------------");
+	               //System.out.println(response.getStatusLine());
+	               if (entity != null) {
+	              	 Map<String, String> map = new HashMap<String, String>();
+	                   BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(entity.getContent(),"UTF-8"));
+	                   SAXReader reader = new SAXReader();
+	                   Document document = reader.read(bufferedReader);
+	                   Element root = document.getRootElement();
+	                   List<Element> elementList = root.elements();
+	                   for (Element e : elementList) {
+	    	                map.put(e.getName(), e.getText());
+	    	             }
+	                   if(map.get("return_code").equals("SUCCESS")){
+	                	   return "SUCCESS";
+	                   }else{
+	                   		return "FAIL";
+	                   }
+	                   /*for (Map.Entry<String, String> entry : map.entrySet()) {  
+	              	    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+	              	} */
+	               }
+	               EntityUtils.consume(entity);
+	           } finally {
+	               response.close();
+	           }
+	       } finally {
+	           httpclient.close();
+	       }
+	       return "";
+		 }
 }
