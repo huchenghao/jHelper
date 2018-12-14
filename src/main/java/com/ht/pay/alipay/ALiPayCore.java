@@ -139,7 +139,7 @@ public class ALiPayCore {
 			System.out.println("REFUND:SUCCESS");
 			return "SUCCESS";
 		} else {
-			System.out.println("REFUND:FAIL");
+			System.out.println("REFUND:FAIL ");
 			return "FAIL";
 		}
 		
