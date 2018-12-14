@@ -31,7 +31,6 @@ public class ParseXMLUtils {
 
 			Element rootElt = doc.getRootElement(); // 获取根节点smsReport
 
-			System.out.println("根节点是："+rootElt.getName());
 
 			Iterator iters = rootElt.elementIterator("sendResp"); // 获取根节点下的子节点sms
 
@@ -45,7 +44,6 @@ public class ParseXMLUtils {
 
 					String smsID = recordEle.elementTextTrim("smsID"); // 拿到sms节点下的子节点stat值
 
-					System.out.println(phone+":"+smsID);
 				}
 			}
 		} catch (DocumentException e) {
@@ -94,7 +92,7 @@ public class ParseXMLUtils {
 
 			if(list!=null&&list.size()>0){
 				for (org.jdom.Element element : list) {
-					System.out.println("key是："+element.getName()+"，值是："+element.getText());
+					//System.out.println("key是："+element.getName()+"，值是："+element.getText());
 
 					/*try{
 						methodName =  element.getName();
