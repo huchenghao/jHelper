@@ -18,8 +18,10 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
+import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
+import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.alipay.api.response.AlipayTradeRefundResponse;
 
 /**
@@ -117,6 +119,34 @@ public class ALiPayCore {
 			return "FAIL";
 		}
 		
+	}
+	/** 
+	* @Title: tradeQuery 
+	* @Description: 查询订单
+	* @return 
+	* @author 大都督
+	* @date 2018年12月18日
+	* @return String
+	 * @throws Exception 
+	*/
+	public static String tradeQuery(Map<String, String> aliPayMap) throws Exception {
+		AlipayClient alipayClient = new DefaultAlipayClient(
+				"https://openapi.alipay.com/gateway.do",
+				aliPayMap.get("app_id"),
+				aliPayMap.get("app_private_key"),
+				"json","utf-8",aliPayMap.get("alipay_rsa_check_public_key"),"RSA2");
+		AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+		request.setBizContent("{" +
+		"\"out_trade_no\":\""+aliPayMap.get("out_trade_no")+"\"," +
+		"\"trade_no\":\"\"," +
+		"\"org_pid\":\"\"" +
+		"  }");
+		AlipayTradeQueryResponse response = alipayClient.execute(request);
+		if(response.isSuccess()){
+			return "SUCCESS";
+		} else {
+			return "FAIL";
+		}
 	}
 	/**
 	 * 
