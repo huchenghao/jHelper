@@ -129,7 +129,7 @@ public class ALiPayCore {
 	* @return String
 	 * @throws Exception 
 	*/
-	public static String tradeQuery(Map<String, String> aliPayMap) throws Exception {
+	public static JSONObject tradeQuery(Map<String, String> aliPayMap) throws Exception {
 		AlipayClient alipayClient = new DefaultAlipayClient(
 				"https://openapi.alipay.com/gateway.do",
 				aliPayMap.get("app_id"),
@@ -142,11 +142,7 @@ public class ALiPayCore {
 		"\"org_pid\":\"\"" +
 		"  }");
 		AlipayTradeQueryResponse response = alipayClient.execute(request);
-		if(response.isSuccess()){
-			return "SUCCESS";
-		} else {
-			return "FAIL";
-		}
+		return JSONObject.parseObject(response.getBody());
 	}
 	/**
 	 * 

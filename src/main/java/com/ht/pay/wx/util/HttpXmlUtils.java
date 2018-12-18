@@ -177,8 +177,49 @@ public class HttpXmlUtils {
         return "";
     }
 
+    /**
+     * 
+    * @Title: xmlInfo 
+    * @Description: 针对微信订单查询，构造xml请求参数
+    * @param unifiedorderQuery
+    * @return 
+    * @author 大都督
+    * @date 2018年12月18日
+    * @return String
+     */
+    public static String xmlInfo(UnifiedorderQuery unifiedorderQuery){
+        if(unifiedorderQuery!=null){
+            StringBuffer bf = new StringBuffer();
+            bf.append("<xml>");
+
+            bf.append("<appid><![CDATA[");
+            bf.append(unifiedorderQuery.getAppid());
+            bf.append("]]></appid>");
+
+            bf.append("<mch_id><![CDATA[");
+            bf.append(unifiedorderQuery.getMch_id());
+            bf.append("]]></mch_id>");
+
+            bf.append("<nonce_str><![CDATA[");
+            bf.append(unifiedorderQuery.getNonce_str());
+            bf.append("]]></nonce_str>");
+
+            bf.append("<sign><![CDATA[");
+            bf.append(unifiedorderQuery.getSign());
+            bf.append("]]></sign>");
 
 
+            bf.append("<out_trade_no><![CDATA[");
+            bf.append(unifiedorderQuery.getOut_trade_no());
+            bf.append("]]></out_trade_no>");
+
+            bf.append("</xml>");
+            return bf.toString();
+        }
+
+        return "";
+    }
+    
 
     /**
      * post请求并得到返回结果

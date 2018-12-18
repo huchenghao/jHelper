@@ -3,10 +3,8 @@ package com.ht.pay.wx;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
@@ -29,16 +27,14 @@ import org.apache.http.util.EntityUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.springframework.util.Assert;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
 import com.ht.pay.wx.util.HttpXmlUtils;
 import com.ht.pay.wx.util.ParseXMLUtils;
 import com.ht.pay.wx.util.RandCharsUtils;
 import com.ht.pay.wx.util.Unifiedorder;
+import com.ht.pay.wx.util.UnifiedorderQuery;
 import com.ht.pay.wx.util.WXSignUtils;
-import com.ht.res.MessageInfo;
 
 
 
@@ -148,37 +144,27 @@ public class WxPayCore {
 	* @return String
 	 * @throws Exception 
 	*/
-	public static String orderquery(Map<String, String> wxPayMap) throws Exception {
+	public static JSONObject orderquery(Map<String, String> wxPayMap) throws Exception {
 		String nonce_str = RandCharsUtils.getRandomString(32);
-		String time_start = RandCharsUtils.timeStart();
-		String time_expire = RandCharsUtils.timeExpire();
         SortedMap<Object,Object> parameters = new TreeMap<Object,Object>();
         parameters.put("appid", wxPayMap.get("appid"));
         parameters.put("mch_id", wxPayMap.get("mch_id"));
         parameters.put("nonce_str", nonce_str);
         parameters.put("out_trade_no", wxPayMap.get("out_trade_no"));
-        parameters.put("time_start", time_start);
-        parameters.put("time_expire", time_expire);
-        parameters.put("trade_type", "APP");
-        parameters.put("spbill_create_ip", wxPayMap.get("spbill_create_ip"));
         String sign = WXSignUtils.createSign("UTF-8", parameters,wxPayMap.get("key"));
-        Unifiedorder unifiedorder = new Unifiedorder();
-        unifiedorder.setAppid(wxPayMap.get("appid"));
-        unifiedorder.setMch_id(wxPayMap.get("mch_id"));
-        unifiedorder.setNonce_str(nonce_str);
-        unifiedorder.setSign(sign);
-        unifiedorder.setOut_trade_no(wxPayMap.get("out_trade_no"));
-        unifiedorder.setSpbill_create_ip(wxPayMap.get("spbill_create_ip"));
-        unifiedorder.setTime_start(time_start);
-        unifiedorder.setTime_expire(time_expire);
+        UnifiedorderQuery unifiedorderQuery = new UnifiedorderQuery();
+        unifiedorderQuery.setAppid(wxPayMap.get("appid"));
+        unifiedorderQuery.setMch_id(wxPayMap.get("mch_id"));
+        unifiedorderQuery.setNonce_str(nonce_str);
+        unifiedorderQuery.setSign(sign);
+        unifiedorderQuery.setOut_trade_no(wxPayMap.get("out_trade_no"));
         //构造xml参数
-        String xmlInfo = HttpXmlUtils.xmlInfo(unifiedorder);
+        String xmlInfo = HttpXmlUtils.xmlInfo(unifiedorderQuery);
         String wxUrl = "https://api.mch.weixin.qq.com/pay/orderquery";
         String method = "POST";
         String weixinPost = HttpXmlUtils.httpsRequest(wxUrl, method, xmlInfo).toString();
         String jsonStr =ParseXMLUtils.jdomParseXmlToStr(weixinPost);
-        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
-        return jsonObject.getString("return_code");
+        return JSONObject.parseObject(jsonStr);
 	}
 	/** 
 	* @Title: refund 
