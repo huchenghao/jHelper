@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 
  * @ClassName: NotNull
- * @Description: 标注参数、属性、方法不可为 Null
+ * @Description: 标注参数、属性、方法不可为 Null 
  * @author: huchenghao
  * @date: 2018年7月31日 下午12:09:20
  */
