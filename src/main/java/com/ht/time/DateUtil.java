@@ -18,6 +18,7 @@ public class DateUtil {
 	
 	public static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
+	public static final String year_MONTH_DAY_24HOUR= "yyyy年 MM月 dd日  HH时 mm分 ss秒 ";
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
 	public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND; // Number of milliseconds in a standard minute.
 	public static final long MILLIS_PER_HOUR = 60 * MILLIS_PER_MINUTE; // Number of milliseconds in a standard hour.
