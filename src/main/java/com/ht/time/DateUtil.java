@@ -557,11 +557,20 @@ public class DateUtil {
 	 * @date: 2018年11月22日 下午5:29:00
 	 */
 	public static Long twoDateDifferMinute(Date startDate,Date endDate){
-		long nd = 1000 * 24 * 60 * 60;
-		long nh = 1000 * 60 * 60;
-		long nm = 1000 * 60;
-	    long diff = endDate.getTime() - startDate.getTime();
-		return diff % nd % nh / nm;
+		return (endDate.getTime()-startDate.getTime())/(1000*60);
+	}
+	/**
+	 * 
+	 * @Title: twoDateDifferSecond
+	 * @Description: 两个日期相差N秒
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 * @author huchenghao
+	 * @date: 2019年1月3日 下午5:59:45
+	 */
+	public static Long twoDateDifferSecond(Date startDate,Date endDate){
+		return (endDate.getTime()-startDate.getTime())/(1000);
 	}
 	
 	/**
@@ -624,5 +633,16 @@ public class DateUtil {
 //		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		return now;
 	}
-	
+	/**
+	 * 
+	 * @Title: getYMDStr
+	 * @Description: 获取YMD格式的当前时间字符串
+	 * @return
+	 * @author huchenghao
+	 * @date: 2019年1月2日 下午3:27:17
+	 */
+	public static String getYMDStr(){
+		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
+		return df.format(new Date());
+	}
 }
