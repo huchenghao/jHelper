@@ -1,8 +1,10 @@
 package com.ht.time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.DateUtils;
@@ -644,4 +646,40 @@ public class DateUtil {
 		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
 		return df.format(new Date());
 	}
+	/**
+	 * 
+	 * @Title: getLastWeekDate
+	 * @Description: 获取当前日期的近7天
+	 * @param format_str 如：yyyy-MM-dd  
+	 * @return
+	 * @author huchenghao
+	 * @date: 2019年1月4日 下午5:58:01
+	 */
+	public static List<String> getLastWeekDate(String format_str) {
+		List<String> list = new ArrayList<String>();
+		SimpleDateFormat sdf = new SimpleDateFormat(format_str);
+		Calendar c = Calendar.getInstance();
+		String today = sdf.format(c.getTime());
+		list.add(today);
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		String today_plus1 = sdf.format(c.getTime());
+		list.add(today_plus1);
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		String today_plus2 = sdf.format(c.getTime());
+		list.add(today_plus2);
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		String today_plus3 = sdf.format(c.getTime());
+		list.add(today_plus3);
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		String today_plus4 = sdf.format(c.getTime());
+		list.add(today_plus4);
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		String today_plus5 = sdf.format(c.getTime());
+		list.add(today_plus5);
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		String today_plus6 = sdf.format(c.getTime());
+		list.add(today_plus6);
+		return list;
+	}
+	
 }
