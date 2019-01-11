@@ -1,4 +1,5 @@
 package com.ht.time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import com.ht.annotation.NotNull;
 public class DateUtil {
 	
 	public static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
+	public static final String HOUR_MINUTE_SECOND_TEMPLATE = "HH:mm:ss";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
 	public static final String YEAR_MONTH_DAY_24HOUR= "yyyy年 MM月 dd日  HH时 mm分 ss秒 ";
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
@@ -681,6 +683,53 @@ public class DateUtil {
 		String today_plus6 = sdf.format(c.getTime());
 		list.add(today_plus6);
 		return list;
+	}
+	
+	public static Date parseDateToHMS(String date) throws ParseException{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(HOUR_MINUTE_SECOND_TEMPLATE);
+		return simpleDateFormat.parse(date);
+	}
+	
+	/**
+	 * 求传入的两个时间片段有没有交集
+	 * @param beginTime  开始时间
+	 * @param endTime   结束时间
+	 *
+	 * @param biginDate  被比较的开始时间
+	 * @param endDate  被比较的结束时间
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean intersection(String beginTime,String endTime,String biginDate,String endDate) throws Exception{
+		DateFormat d_Fm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date suspendTime = d_Fm.parse(beginTime);
+		Date resumeTime = d_Fm.parse(endTime);
+		
+		Date leftDate= d_Fm.parse(biginDate);
+		Date rightDate= d_Fm.parse(endDate);
+		//判断两个时间段是否有交集
+		if((suspendTime.getTime() <= leftDate.getTime() || suspendTime.getTime() <rightDate.getTime())
+		&& ((resumeTime.getTime() >leftDate.getTime() || resumeTime.getTime() >= rightDate.getTime()))){
+		return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static boolean intersectionHMS(String beginTime,String endTime,String biginDate,String endDate) throws Exception{
+		DateFormat d_Fm = new SimpleDateFormat(HOUR_MINUTE_SECOND_TEMPLATE);
+		Date suspendTime = d_Fm.parse(beginTime);
+		Date resumeTime = d_Fm.parse(endTime);
+		
+		Date leftDate= d_Fm.parse(biginDate);
+		Date rightDate= d_Fm.parse(endDate);
+		//判断两个时间段是否有交集
+		if((suspendTime.getTime() <= leftDate.getTime() || suspendTime.getTime() <rightDate.getTime())
+		&& ((resumeTime.getTime() >leftDate.getTime() || resumeTime.getTime() >= rightDate.getTime()))){
+		return true;
+		}else{
+			return false;
+		}
 	}
 	
 }
