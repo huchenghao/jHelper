@@ -21,6 +21,7 @@ public class DateUtil {
 	
 	public static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
 	public static final String HOUR_MINUTE_SECOND_TEMPLATE = "HH:mm:ss";
+	public static final String HOUR_MINUTE = "HH:mm";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
 	public static final String YEAR_MONTH_DAY_24HOUR= "yyyy年 MM月 dd日  HH时 mm分 ss秒 ";
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
@@ -690,6 +691,11 @@ public class DateUtil {
 		return simpleDateFormat.parse(date);
 	}
 	
+	public static Date parseDateToHM(String date) throws ParseException{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(HOUR_MINUTE);
+		return simpleDateFormat.parse(date);
+	}
+	
 	/**
 	 * 求传入的两个时间片段有没有交集
 	 * @param beginTime  开始时间
@@ -716,8 +722,8 @@ public class DateUtil {
 		}
 	}
 	
-	public static boolean intersectionHMS(String beginTime,String endTime,String biginDate,String endDate) throws Exception{
-		DateFormat d_Fm = new SimpleDateFormat(HOUR_MINUTE_SECOND_TEMPLATE);
+	public static boolean intersectionHM(String beginTime,String endTime,String biginDate,String endDate) throws Exception{
+		DateFormat d_Fm = new SimpleDateFormat(HOUR_MINUTE);
 		Date suspendTime = d_Fm.parse(beginTime);
 		Date resumeTime = d_Fm.parse(endTime);
 		
