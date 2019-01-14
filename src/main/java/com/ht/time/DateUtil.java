@@ -447,8 +447,24 @@ public class DateUtil {
 	 */
 	public static Date parseYMDHMSStrToDate(String dateStr) throws ParseException{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
-			return simpleDateFormat.parse(dateStr);
+		return simpleDateFormat.parse(dateStr);
 	}
+	/**
+	 * 
+	 * @Title: parseYMDStrToDate
+	 * @Description: YMDStr转换为Date 
+	 * @param dateStr
+	 * @return
+	 * @throws ParseException
+	 * @author huchenghao
+	 * @date: 2019年1月11日 下午4:38:57
+	 */
+	public static Date parseYMDStrToDate(String dateStr) throws ParseException{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
+		return simpleDateFormat.parse(dateStr);
+	}
+	
+	
 	/**
 	 * 
 	 * @Title: formatDateToYMDHMSStr
