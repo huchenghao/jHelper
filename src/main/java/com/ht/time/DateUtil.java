@@ -24,6 +24,8 @@ public class DateUtil {
 	public static final String HOUR_MINUTE = "HH:mm";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
 	public static final String YEAR_MONTH_DAY_24HOUR= "yyyy年 MM月 dd日  HH时 mm分 ss秒 ";
+	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE_2 = "yyyyMMddHHmmss";
+	
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
 	public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND; // Number of milliseconds in a standard minute.
 	public static final long MILLIS_PER_HOUR = 60 * MILLIS_PER_MINUTE; // Number of milliseconds in a standard hour.
@@ -736,6 +738,60 @@ public class DateUtil {
 		}else{
 			return false;
 		}
+	}
+
+	/**
+	 * 
+	* @Title: getNowTime 
+	* @Description: TODO(这里用一句话描述这个方法的作用) 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
+	public static String getNowTime(){
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String now = df.format(new Date());
+		return now;
+	
+	}
+	
+	/**
+	 * 由 yyyy-MM-dd HH:mm:ss字符串 转换为 yyyyMMddHHmmss格式字符串
+	 * @throws ParseException 
+	 * @throws  
+	 * 
+	 */
+	public static String dateStr2yyyyMMddHHmm(String dateStr) throws ParseException{
+		Date parseDate = parseDate(dateStr, YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+		String formatDateStr = formatDate(parseDate, YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE_2);
+		return formatDateStr;
+	}
+	
+	/**
+	 * 
+	* @Title: parseDate 
+	* @Description: 按照给定格式解析字符串为日期 
+	* @param @param dateStr
+	* @param @param format
+	* @param @return
+	* @param @throws ParseException    设定文件 
+	* @return Date    返回类型 
+	* @throws
+	 */
+	public static Date parseDate(String dateStr,String format) throws ParseException{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+		try {
+			return simpleDateFormat.parse(dateStr);
+		}catch (Exception e) {
+			return new Date();
+		}
+	}
+	
+	public static Date addTimeByMinutes(Date date, int minutes) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		calendar.add(Calendar.MINUTE, minutes);
+		return calendar.getTime();
 	}
 	
 }
