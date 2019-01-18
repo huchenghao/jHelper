@@ -471,7 +471,6 @@ public class DateUtil {
 	
 	
 	/**
-	 * 
 	 * @Title: formatDateToYMDHMSStr
 	 * @Description: date转换成YYYY-MM-DD格式的字符串
 	 * @param date
