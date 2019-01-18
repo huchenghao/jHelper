@@ -463,7 +463,7 @@ public class DateUtil {
 	 * @author huchenghao
 	 */
 	public static String formatDateToYMDHMSStr(Date date){
-		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
+		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		return df.format(date);
 	}
 	/**
