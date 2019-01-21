@@ -3,6 +3,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -809,4 +810,35 @@ public class DateUtil {
 		return calendar.getTime();
 	}
 	
+	public static double getTimeInterval(Date stime1, Date etime1, Date stime2, Date etime2) throws Exception {
+        float f = 0;
+        long lst = stime1.getTime();
+        long let = etime1.getTime();
+ 
+        long rst = stime2.getTime();
+        long ret = etime2.getTime();
+ 
+        if (lst > let || rst > ret) {
+            throw new Exception("起始时间不能大于结束时间");
+        }
+ 
+        if (let <= rst || lst >= ret) {
+            return f;
+        }
+ 
+        long[] a = {lst, let, rst, ret};
+        Arrays.sort(a); //从小到大排序，取第二、第三计算
+        f = a[2] - a[1];
+        
+ 
+        return (double) Math.round((f / 60000) * 100) / 100;
+    }
+	
+	/*public static void main(String[] args) throws Exception, Exception {
+		
+		double timeInterval = getTimeInterval(parseYMDHMSStrToDate("2018-01-01 12:00:00"), parseYMDHMSStrToDate("2018-01-01 14:00:00")
+				,parseYMDHMSStrToDate("2018-01-01 11:00:00"), parseYMDHMSStrToDate("2018-01-01 11:03:00"));
+		System.out.println(timeInterval+"分钟");
+		
+	}*/
 }
