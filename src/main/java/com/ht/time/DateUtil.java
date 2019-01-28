@@ -473,7 +473,7 @@ public class DateUtil {
 	
 	/**
 	 * @Title: formatDateToYMDHMSStr
-	 * @Description: date转换成YYYY-MM-DD格式的字符串
+	 * @Description: date转换成YYYY-MM-DD HH:MM:SS格式的字符串
 	 * @param date
 	 * @return
 	 * @author huchenghao
@@ -834,10 +834,39 @@ public class DateUtil {
         return (double) Math.round((f / 60000) * 100) / 100;
     }
 	
+	public static double getTimeIntervalHM(Date stime1, Date etime1, Date stime2, Date etime2) throws Exception {
+		stime1 = parseDateToHM(formatDate(stime1, HOUR_MINUTE));
+		etime1 = parseDateToHM(formatDate(etime1, HOUR_MINUTE));
+		stime2 = parseDateToHM(formatDate(stime2, HOUR_MINUTE));
+		etime2 = parseDateToHM(formatDate(etime2, HOUR_MINUTE));
+		
+		float f = 0;
+        long lst = stime1.getTime();
+        long let = etime1.getTime();
+ 
+        long rst = stime2.getTime();
+        long ret = etime2.getTime();
+ 
+        if (lst > let || rst > ret) {
+            throw new Exception("璧峰鏃堕棿涓嶈兘澶т簬缁撴潫鏃堕棿");
+        }
+ 
+        if (let <= rst || lst >= ret) {
+            return f;
+        }
+ 
+        long[] a = {lst, let, rst, ret};
+        Arrays.sort(a); //浠庡皬鍒板ぇ鎺掑簭锛屽彇绗簩銆佺涓夎绠�
+        f = a[2] - a[1];
+        
+ 
+        return (double) Math.round((f / 60000) * 100) / 100;
+    }
+	
 	/*public static void main(String[] args) throws Exception, Exception {
 		
-		double timeInterval = getTimeInterval(parseYMDHMSStrToDate("2018-01-01 12:00:00"), parseYMDHMSStrToDate("2018-01-01 14:00:00")
-				,parseYMDHMSStrToDate("2018-01-01 11:00:00"), parseYMDHMSStrToDate("2018-01-01 11:03:00"));
+		double timeInterval = getTimeIntervalHM(parseYMDHMSStrToDate("2018-01-01 12:00:00"), parseYMDHMSStrToDate("2018-01-02 14:00:00")
+				,parseYMDHMSStrToDate("2018-01-01 11:00:00"), parseYMDHMSStrToDate("2018-01-02 15:00:00"));
 		System.out.println(timeInterval+"分钟");
 		
 	}*/
