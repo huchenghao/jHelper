@@ -6,11 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.google.common.collect.Maps;
 import com.ht.annotation.NotNull;
 
 /**
@@ -834,12 +837,39 @@ public class DateUtil {
         return (double) Math.round((f / 60000) * 100) / 100;
     }
 	
+	/**
+	 * 获取两个时间段的交集(分钟数)
+	 * @Description
+	 * @param stime1
+	 * @param etime1
+	 * @param stime2
+	 * @param etime2
+	 * @return
+	 * @throws Exception
+	 * @author: GuoShuai
+	 * @date: 2019年3月4日 下午6:55:45
+	 */
 	public static double getTimeIntervalHM(Date stime1, Date etime1, Date stime2, Date etime2) throws Exception {
 		stime1 = parseDateToHM(formatDate(stime1, HOUR_MINUTE));
 		etime1 = parseDateToHM(formatDate(etime1, HOUR_MINUTE));
 		stime2 = parseDateToHM(formatDate(stime2, HOUR_MINUTE));
 		etime2 = parseDateToHM(formatDate(etime2, HOUR_MINUTE));
-		
+		return getTimeIntervalYMDHMS(stime1,etime1,stime2,etime2) / 60;
+    }
+	
+	/**
+	 * 获取两个时间段交集(秒数), 日期格式yyyy-MM-dd HH:mm:ss
+	 * @Description
+	 * @param stime1
+	 * @param etime1
+	 * @param stime2
+	 * @param etime2
+	 * @return
+	 * @author: GuoShuai
+	 * @throws Exception 
+	 * @date: 2019年3月4日 下午6:56:58
+	 */
+	public static double getTimeIntervalYMDHMS(Date stime1, Date etime1, Date stime2, Date etime2) throws Exception {
 		float f = 0;
         long lst = stime1.getTime();
         long let = etime1.getTime();
@@ -860,14 +890,46 @@ public class DateUtil {
         f = a[2] - a[1];
         
  
-        return (double) Math.round((f / 60000) * 100) / 100;
-    }
+        return (double) Math.round((f / 1000) * 100) / 100;
+	}
 	
-	/*public static void main(String[] args) throws Exception, Exception {
+	
+	public static List<Map<String, Object>> getTimeQuantumArray(String beginDate, String endDate) throws ParseException {
+		Date begin = parseYMDStrToDate(beginDate);
+		Date end = parseYMDStrToDate(endDate);
+		if (end.getTime() <= begin.getTime()) {
+			throw new RuntimeException("结束时间必须大于开始时间");
+		}
+//		int beginYear = begin.getYear();
+//		int beginMonth = begin.getMonth();
+//		int beginDay = begin.getDay();
+//		int endYear = end.getYear();
+//		int endMonth = end.getMonth();
+//		int endDay = end.getDay();
+		List<Map<String, Object>> retList = new ArrayList<Map<String, Object>>();
+		Map<String,Object> map = Maps.newHashMap();
+		map.put("beginDate", formatDateToYMD(begin));
+		retList.add(map);
+//		if (beginYear == endYear && beginMonth == endMonth && beginDay == endDay) {
+//			//同一天
+//			return retList;
+//		}
+		long differenceDay = (end.getTime()-begin.getTime())/1000/60/60/24;
+		for (int i = 1; i <= differenceDay; i++) {
+			Date addDays = addDays(begin, i);
+			Map<String,Object> addDayMap = Maps.newHashMap();
+			addDayMap.put("beginDate", formatDateToYMD(addDays));
+			retList.add(addDayMap);
+		}
+		return retList;
+	}
+	
+	public static void main(String[] args) throws Exception, Exception {
 		
-		double timeInterval = getTimeIntervalHM(parseYMDHMSStrToDate("2018-01-01 12:00:00"), parseYMDHMSStrToDate("2018-01-02 14:00:00")
-				,parseYMDHMSStrToDate("2018-01-01 11:00:00"), parseYMDHMSStrToDate("2018-01-02 15:00:00"));
-		System.out.println(timeInterval+"分钟");
+//		double timeInterval = getTimeIntervalHM(parseYMDHMSStrToDate("2018-01-01 12:00:00"), parseYMDHMSStrToDate("2018-01-02 14:00:00")
+//				,parseYMDHMSStrToDate("2018-01-01 11:00:00"), parseYMDHMSStrToDate("2018-01-02 15:00:00"));
+		List<Map<String,Object>> list = getTimeQuantumArray("2018-01-01 12:00:00", "2018-01-05:00:00");
+		System.out.println(list);
 		
-	}*/
+	}
 }
