@@ -897,7 +897,7 @@ public class DateUtil {
 	public static List<Map<String, Object>> getTimeQuantumArray(String beginDate, String endDate) throws ParseException {
 		Date begin = parseYMDStrToDate(beginDate);
 		Date end = parseYMDStrToDate(endDate);
-		if (end.getTime() <= begin.getTime()) {
+		if (end.getTime() < begin.getTime()) {
 			throw new RuntimeException("结束时间必须大于开始时间");
 		}
 //		int beginYear = begin.getYear();
