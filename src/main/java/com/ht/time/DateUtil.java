@@ -886,7 +886,7 @@ public class DateUtil {
         }
  
         long[] a = {lst, let, rst, ret};
-        Arrays.sort(a); //浠庡皬鍒板ぇ鎺掑簭锛屽彇绗簩銆佺涓夎绠�
+        Arrays.sort(a); //浠庡皬鍒板ぇ鎺掑簭锛屽彇绗簩銆佺涓夎绠� 
         f = a[2] - a[1];
         
  
