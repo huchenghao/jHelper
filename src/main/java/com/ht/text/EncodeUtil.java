@@ -8,6 +8,7 @@ import com.google.common.io.BaseEncoding;
  */
 public class EncodeUtil {
 
+	
 	/**
 	 * Hex编码, 将byte[]编码为String，默认为ABCDEF为大写字母.
 	 */
