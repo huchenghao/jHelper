@@ -924,12 +924,4 @@ public class DateUtil {
 		return retList;
 	}
 	
-	public static void main(String[] args) throws Exception, Exception {
-		
-//		double timeInterval = getTimeIntervalHM(parseYMDHMSStrToDate("2018-01-01 12:00:00"), parseYMDHMSStrToDate("2018-01-02 14:00:00")
-//				,parseYMDHMSStrToDate("2018-01-01 11:00:00"), parseYMDHMSStrToDate("2018-01-02 15:00:00"));
-		List<Map<String,Object>> list = getTimeQuantumArray("2018-01-01 12:00:00", "2018-01-05:00:00");
-		System.out.println(list);
-		
-	}
 }
