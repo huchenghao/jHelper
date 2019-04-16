@@ -923,5 +923,4 @@ public class DateUtil {
 		}
 		return retList;
 	}
-	
 }
