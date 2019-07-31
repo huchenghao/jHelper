@@ -1,4 +1,5 @@
 package com.ht.time;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,14 +23,14 @@ import com.ht.annotation.NotNull;
  * 在不方便使用joda-time时，使用本类降低Date处理的复杂度与性能消耗, 封装Common Lang及移植Jodd的最常用日期方法
  */
 public class DateUtil {
-	
+
 	public static final String YEAR_MONTH_DAY_TEMPLATE = "yyyy-MM-dd";
 	public static final String HOUR_MINUTE_SECOND_TEMPLATE = "HH:mm:ss";
 	public static final String HOUR_MINUTE = "HH:mm";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE = "yyyy-MM-dd HH:mm:ss";
-	public static final String YEAR_MONTH_DAY_24HOUR= "yyyy年 MM月 dd日  HH时 mm分 ss秒 ";
+	public static final String YEAR_MONTH_DAY_24HOUR = "yyyy年 MM月 dd日  HH时 mm分 ss秒 ";
 	public static final String YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE_2 = "yyyyMMddHHmmss";
-	
+
 	public static final long MILLIS_PER_SECOND = 1000; // Number of milliseconds in a standard second.
 	public static final long MILLIS_PER_MINUTE = 60 * MILLIS_PER_SECOND; // Number of milliseconds in a standard minute.
 	public static final long MILLIS_PER_HOUR = 60 * MILLIS_PER_MINUTE; // Number of milliseconds in a standard hour.
@@ -66,8 +67,7 @@ public class DateUtil {
 	}
 
 	//////////// 往前往后滚动时间//////////////
-	
-	
+
 	/**
 	 * 
 	 * @Title: addTimeByYears
@@ -80,7 +80,6 @@ public class DateUtil {
 	public static Date addTimeByYears(@NotNull final Date date, int amount) {
 		return DateUtils.addYears(date, amount);
 	}
-	
 
 	/**
 	 * 加一月
@@ -443,7 +442,7 @@ public class DateUtil {
 
 		return MONTH_LENGTH[month];
 	}
-	
+
 	/**
 	 * 
 	* @Title: parseYMDHMSStrToDate 
@@ -454,10 +453,11 @@ public class DateUtil {
 	* @return Date    返回类型 Date
 	* @throws
 	 */
-	public static Date parseYMDHMSStrToDate(String dateStr) throws ParseException{
+	public static Date parseYMDHMSStrToDate(String dateStr) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		return simpleDateFormat.parse(dateStr);
 	}
+
 	/**
 	 * 
 	 * @Title: parseYMDStrToDate
@@ -468,12 +468,11 @@ public class DateUtil {
 	 * @author huchenghao
 	 * @date: 2019年1月11日 下午4:38:57
 	 */
-	public static Date parseYMDStrToDate(String dateStr) throws ParseException{
+	public static Date parseYMDStrToDate(String dateStr) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
 		return simpleDateFormat.parse(dateStr);
 	}
-	
-	
+
 	/**
 	 * @Title: formatDateToYMDHMSStr
 	 * @Description: date转换成YYYY-MM-DD HH:MM:SS格式的字符串
@@ -481,10 +480,11 @@ public class DateUtil {
 	 * @return
 	 * @author huchenghao
 	 */
-	public static String formatDateToYMDHMSStr(Date date){
+	public static String formatDateToYMDHMSStr(Date date) {
 		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		return df.format(date);
 	}
+
 	/**
 	 * 
 	 * @Title: parseDateToYMDArray
@@ -493,11 +493,11 @@ public class DateUtil {
 	 * @return
 	 * @author huchenghao
 	 */
-	public static String[] parseDateToYMDArray(Date date){
+	public static String[] parseDateToYMDArray(Date date) {
 		String date_str = formatDateToYMDHMSStr(date);
 		return date_str.split("-");
 	}
-	
+
 	/**
 	 * 
 	 * @Title: formatDateToYMD
@@ -506,11 +506,11 @@ public class DateUtil {
 	 * @return
 	 * @author huchenghao
 	 */
-	public static String formatDateToYMD(Date date){
+	public static String formatDateToYMD(Date date) {
 		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
 		return df.format(date);
 	}
-	
+
 	/**
 	 * 根据传入规则,格式化日期为字符串
 	 * @Title: formatDate
@@ -520,16 +520,17 @@ public class DateUtil {
 	 * @return
 	 * @author gs
 	 */
-	public static String formatDate(Date date, String format){
+	public static String formatDate(Date date, String format) {
 		SimpleDateFormat df = new SimpleDateFormat(format);
 		return df.format(date);
 	}
-	
-	public static String getNowTimeToNo(){
+
+	public static String getNowTimeToNo() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
 		String now = df.format(new Date());
 		return now;
 	}
+
 	/**
 	 * 
 	 * @Title: timestampToDate
@@ -538,10 +539,11 @@ public class DateUtil {
 	 * @return
 	 * @author huchenghao
 	 */
-	public static Date timestampToDate(String timestamp){
-        long time = Long.parseLong(timestamp);
-        return new Date(time);
+	public static Date timestampToDate(String timestamp) {
+		long time = Long.parseLong(timestamp);
+		return new Date(time);
 	}
+
 	/**
 	 * 
 	 * @Title: twoDateDifferDay
@@ -552,11 +554,12 @@ public class DateUtil {
 	 * @author huchenghao
 	 * @date: 2018年11月22日 下午5:26:38
 	 */
-	public static Long twoDateDifferDay(Date startDate,Date endDate){
+	public static Long twoDateDifferDay(Date startDate, Date endDate) {
 		long nd = 1000 * 24 * 60 * 60;
-	    long diff = endDate.getTime() - startDate.getTime();
-		return  diff / nd;
+		long diff = endDate.getTime() - startDate.getTime();
+		return diff / nd;
 	}
+
 	/**
 	 * 
 	 * @Title: twoDateDifferHour
@@ -567,12 +570,13 @@ public class DateUtil {
 	 * @author huchenghao
 	 * @date: 2018年11月22日 下午5:27:51
 	 */
-	public static Long twoDateDifferHour(Date startDate,Date endDate){
+	public static Long twoDateDifferHour(Date startDate, Date endDate) {
 		long nd = 1000 * 24 * 60 * 60;
 		long nh = 1000 * 60 * 60;
-	    long diff = endDate.getTime() - startDate.getTime();
+		long diff = endDate.getTime() - startDate.getTime();
 		return diff % nd / nh;
 	}
+
 	/**
 	 * @Title: twoDateDifferMinute
 	 * @Description: 两个日期相差N分钟
@@ -582,9 +586,10 @@ public class DateUtil {
 	 * @author huchenghao
 	 * @date: 2018年11月22日 下午5:29:00
 	 */
-	public static Long twoDateDifferMinute(Date startDate,Date endDate){
-		return (endDate.getTime()-startDate.getTime())/(1000*60);
+	public static Long twoDateDifferMinute(Date startDate, Date endDate) {
+		return (endDate.getTime() - startDate.getTime()) / (1000 * 60);
 	}
+
 	/**
 	 * 
 	 * @Title: twoDateDifferSecond
@@ -595,10 +600,10 @@ public class DateUtil {
 	 * @author huchenghao
 	 * @date: 2019年1月3日 下午5:59:45
 	 */
-	public static Long twoDateDifferSecond(Date startDate,Date endDate){
-		return (endDate.getTime()-startDate.getTime())/(1000);
+	public static Long twoDateDifferSecond(Date startDate, Date endDate) {
+		return (endDate.getTime() - startDate.getTime()) / (1000);
 	}
-	
+
 	/**
 	 * 获取传入日期所属季度的最小时间
 	 * @Title: belongQuarterMaxDate
@@ -608,7 +613,7 @@ public class DateUtil {
 	 * @author gs
 	 * @date 2018年11月26日 下午5:30:03
 	 */
-	public static Date belongQuarterMinDate(Date date){
+	public static Date belongQuarterMinDate(Date date) {
 		int month = date.getMonth();
 		Date now = new Date();
 		now.setHours(0);
@@ -616,18 +621,18 @@ public class DateUtil {
 		now.setSeconds(0);
 		now.setDate(1);
 		if (month == 1 || month == 2 || month == 3) {
-			now.setMonth(1-1);
-		}else if (month == 4 || month == 5 || month == 6) {
-			now.setMonth(4-1);
-		}else if (month == 7 || month == 8 || month == 9) {
-			now.setMonth(7-1);
-		}else{
-			now.setMonth(10-1);
+			now.setMonth(1 - 1);
+		} else if (month == 4 || month == 5 || month == 6) {
+			now.setMonth(4 - 1);
+		} else if (month == 7 || month == 8 || month == 9) {
+			now.setMonth(7 - 1);
+		} else {
+			now.setMonth(10 - 1);
 		}
-//		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+		//		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		return now;
 	}
-	
+
 	/**
 	 * 获取传入日期所属季度的最大时间
 	 * @Title: belongQuarterMinDate
@@ -637,28 +642,29 @@ public class DateUtil {
 	 * @author gs
 	 * @date 2018年11月26日 下午5:56:06
 	 */
-	public static Date belongQuarterMaxDate(Date date){
+	public static Date belongQuarterMaxDate(Date date) {
 		int month = date.getMonth();
 		Date now = new Date();
 		now.setHours(23);
 		now.setMinutes(59);
 		now.setSeconds(59);
 		if (month == 0 || month == 1 || month == 2) {
-			now.setMonth(3-1);
+			now.setMonth(3 - 1);
 			now.setDate(31);
-		}else if (month == 3 || month == 4 || month == 5) {
-			now.setMonth(6-1);
+		} else if (month == 3 || month == 4 || month == 5) {
+			now.setMonth(6 - 1);
 			now.setDate(30);
-		}else if (month == 6 || month == 7 || month == 8) {
-			now.setMonth(9-1);
+		} else if (month == 6 || month == 7 || month == 8) {
+			now.setMonth(9 - 1);
 			now.setDate(30);
-		}else{
-			now.setMonth(12-1);
+		} else {
+			now.setMonth(12 - 1);
 			now.setDate(31);
 		}
-//		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
+		//		return formatDate(now,DateUtil.YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		return now;
 	}
+
 	/**
 	 * 
 	 * @Title: getYMDStr
@@ -667,10 +673,11 @@ public class DateUtil {
 	 * @author huchenghao
 	 * @date: 2019年1月2日 下午3:27:17
 	 */
-	public static String getYMDStr(){
+	public static String getYMDStr() {
 		SimpleDateFormat df = new SimpleDateFormat(YEAR_MONTH_DAY_TEMPLATE);
 		return df.format(new Date());
 	}
+
 	/**
 	 * 
 	 * @Title: getLastWeekDate
@@ -706,17 +713,17 @@ public class DateUtil {
 		list.add(today_plus6);
 		return list;
 	}
-	
-	public static Date parseDateToHMS(String date) throws ParseException{
+
+	public static Date parseDateToHMS(String date) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(HOUR_MINUTE_SECOND_TEMPLATE);
 		return simpleDateFormat.parse(date);
 	}
-	
-	public static Date parseDateToHM(String date) throws ParseException{
+
+	public static Date parseDateToHM(String date) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(HOUR_MINUTE);
 		return simpleDateFormat.parse(date);
 	}
-	
+
 	/**
 	 * 求传入的两个时间片段有没有交集
 	 * @param beginTime  开始时间
@@ -727,34 +734,36 @@ public class DateUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean intersection(String beginTime,String endTime,String biginDate,String endDate) throws Exception{
+	public static boolean intersection(String beginTime, String endTime, String biginDate, String endDate)
+			throws Exception {
 		DateFormat d_Fm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date suspendTime = d_Fm.parse(beginTime);
 		Date resumeTime = d_Fm.parse(endTime);
-		
-		Date leftDate= d_Fm.parse(biginDate);
-		Date rightDate= d_Fm.parse(endDate);
+
+		Date leftDate = d_Fm.parse(biginDate);
+		Date rightDate = d_Fm.parse(endDate);
 		//判断两个时间段是否有交集
-		if((suspendTime.getTime() <= leftDate.getTime() || suspendTime.getTime() <rightDate.getTime())
-		&& ((resumeTime.getTime() >leftDate.getTime() || resumeTime.getTime() >= rightDate.getTime()))){
-		return true;
-		}else{
+		if ((suspendTime.getTime() <= leftDate.getTime() || suspendTime.getTime() < rightDate.getTime())
+				&& ((resumeTime.getTime() > leftDate.getTime() || resumeTime.getTime() >= rightDate.getTime()))) {
+			return true;
+		} else {
 			return false;
 		}
 	}
-	
-	public static boolean intersectionHM(String beginTime,String endTime,String biginDate,String endDate) throws Exception{
+
+	public static boolean intersectionHM(String beginTime, String endTime, String biginDate, String endDate)
+			throws Exception {
 		DateFormat d_Fm = new SimpleDateFormat(HOUR_MINUTE);
 		Date suspendTime = d_Fm.parse(beginTime);
 		Date resumeTime = d_Fm.parse(endTime);
-		
-		Date leftDate= d_Fm.parse(biginDate);
-		Date rightDate= d_Fm.parse(endDate);
+
+		Date leftDate = d_Fm.parse(biginDate);
+		Date rightDate = d_Fm.parse(endDate);
 		//判断两个时间段是否有交集
-		if((suspendTime.getTime() <= leftDate.getTime() || suspendTime.getTime() <rightDate.getTime())
-		&& ((resumeTime.getTime() >leftDate.getTime() || resumeTime.getTime() >= rightDate.getTime()))){
-		return true;
-		}else{
+		if ((suspendTime.getTime() <= leftDate.getTime() || suspendTime.getTime() < rightDate.getTime())
+				&& ((resumeTime.getTime() > leftDate.getTime() || resumeTime.getTime() >= rightDate.getTime()))) {
+			return true;
+		} else {
 			return false;
 		}
 	}
@@ -767,25 +776,25 @@ public class DateUtil {
 	* @return String    返回类型 
 	* @throws
 	 */
-	public static String getNowTime(){
+	public static String getNowTime() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		String now = df.format(new Date());
 		return now;
-	
+
 	}
-	
+
 	/**
 	 * 由 yyyy-MM-dd HH:mm:ss字符串 转换为 yyyyMMddHHmmss格式字符串
 	 * @throws ParseException 
 	 * @throws  
 	 * 
 	 */
-	public static String dateStr2yyyyMMddHHmm(String dateStr) throws ParseException{
+	public static String dateStr2yyyyMMddHHmm(String dateStr) throws ParseException {
 		Date parseDate = parseDate(dateStr, YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE);
 		String formatDateStr = formatDate(parseDate, YEAR_MONTH_DAY_24HOUR_MINUTE_SECOND_TEMPLATE_2);
 		return formatDateStr;
 	}
-	
+
 	/**
 	 * 
 	* @Title: parseDate 
@@ -797,46 +806,45 @@ public class DateUtil {
 	* @return Date    返回类型 
 	* @throws
 	 */
-	public static Date parseDate(String dateStr,String format) throws ParseException{
+	public static Date parseDate(String dateStr, String format) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
 		try {
 			return simpleDateFormat.parse(dateStr);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return new Date();
 		}
 	}
-	
+
 	public static Date addTimeByMinutes(Date date, int minutes) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
 		calendar.add(Calendar.MINUTE, minutes);
 		return calendar.getTime();
 	}
-	
+
 	public static double getTimeInterval(Date stime1, Date etime1, Date stime2, Date etime2) throws Exception {
-        float f = 0;
-        long lst = stime1.getTime();
-        long let = etime1.getTime();
- 
-        long rst = stime2.getTime();
-        long ret = etime2.getTime();
- 
-        if (lst > let || rst > ret) {
-            throw new Exception("起始时间不能大于结束时间");
-        }
- 
-        if (let <= rst || lst >= ret) {
-            return f;
-        }
- 
-        long[] a = {lst, let, rst, ret};
-        Arrays.sort(a); //从小到大排序，取第二、第三计算
-        f = a[2] - a[1];
-        
- 
-        return (double) Math.round((f / 60000) * 100) / 100;
-    }
-	
+		float f = 0;
+		long lst = stime1.getTime();
+		long let = etime1.getTime();
+
+		long rst = stime2.getTime();
+		long ret = etime2.getTime();
+
+		if (lst > let || rst > ret) {
+			throw new Exception("起始时间不能大于结束时间");
+		}
+
+		if (let <= rst || lst >= ret) {
+			return f;
+		}
+
+		long[] a = { lst, let, rst, ret };
+		Arrays.sort(a); //从小到大排序，取第二、第三计算
+		f = a[2] - a[1];
+
+		return (double) Math.round((f / 60000) * 100) / 100;
+	}
+
 	/**
 	 * 获取两个时间段的交集(分钟数)
 	 * @Description
@@ -854,9 +862,9 @@ public class DateUtil {
 		etime1 = parseDateToHM(formatDate(etime1, HOUR_MINUTE));
 		stime2 = parseDateToHM(formatDate(stime2, HOUR_MINUTE));
 		etime2 = parseDateToHM(formatDate(etime2, HOUR_MINUTE));
-		return getTimeIntervalYMDHMS(stime1,etime1,stime2,etime2) / 60;
-    }
-	
+		return getTimeIntervalYMDHMS(stime1, etime1, stime2, etime2) / 60;
+	}
+
 	/**
 	 * 获取两个时间段交集(秒数), 日期格式yyyy-MM-dd HH:mm:ss
 	 * @Description
@@ -871,56 +879,81 @@ public class DateUtil {
 	 */
 	public static double getTimeIntervalYMDHMS(Date stime1, Date etime1, Date stime2, Date etime2) throws Exception {
 		float f = 0;
-        long lst = stime1.getTime();
-        long let = etime1.getTime();
- 
-        long rst = stime2.getTime();
-        long ret = etime2.getTime();
- 
-        if (lst > let || rst > ret) {
-            throw new Exception("璧峰鏃堕棿涓嶈兘澶т簬缁撴潫鏃堕棿");
-        }
- 
-        if (let <= rst || lst >= ret) {
-            return f;
-        }
- 
-        long[] a = {lst, let, rst, ret};
-        Arrays.sort(a); //浠庡皬鍒板ぇ鎺掑簭锛屽彇绗簩銆佺涓夎绠� 
-        f = a[2] - a[1];
-        
- 
-        return (double) Math.round((f / 1000) * 100) / 100;
+		long lst = stime1.getTime();
+		long let = etime1.getTime();
+
+		long rst = stime2.getTime();
+		long ret = etime2.getTime();
+
+		if (lst > let || rst > ret) {
+			throw new Exception("璧峰鏃堕棿涓嶈兘澶т簬缁撴潫鏃堕棿");
+		}
+
+		if (let <= rst || lst >= ret) {
+			return f;
+		}
+
+		long[] a = { lst, let, rst, ret };
+		Arrays.sort(a); //浠庡皬鍒板ぇ鎺掑簭锛屽彇绗簩銆佺涓夎绠� 
+		f = a[2] - a[1];
+
+		return (double) Math.round((f / 1000) * 100) / 100;
 	}
-	
-	
-	public static List<Map<String, Object>> getTimeQuantumArray(String beginDate, String endDate) throws ParseException {
+
+	public static List<Map<String, Object>> getTimeQuantumArray(String beginDate, String endDate)
+			throws ParseException {
 		Date begin = parseYMDStrToDate(beginDate);
 		Date end = parseYMDStrToDate(endDate);
 		if (end.getTime() < begin.getTime()) {
 			throw new RuntimeException("结束时间必须大于开始时间");
 		}
-//		int beginYear = begin.getYear();
-//		int beginMonth = begin.getMonth();
-//		int beginDay = begin.getDay();
-//		int endYear = end.getYear();
-//		int endMonth = end.getMonth();
-//		int endDay = end.getDay();
+		//		int beginYear = begin.getYear();
+		//		int beginMonth = begin.getMonth();
+		//		int beginDay = begin.getDay();
+		//		int endYear = end.getYear();
+		//		int endMonth = end.getMonth();
+		//		int endDay = end.getDay();
 		List<Map<String, Object>> retList = new ArrayList<Map<String, Object>>();
-		Map<String,Object> map = Maps.newHashMap();
+		Map<String, Object> map = Maps.newHashMap();
 		map.put("beginDate", formatDateToYMD(begin));
 		retList.add(map);
-//		if (beginYear == endYear && beginMonth == endMonth && beginDay == endDay) {
-//			//同一天
-//			return retList;
-//		}
-		long differenceDay = (end.getTime()-begin.getTime())/1000/60/60/24;
+		//		if (beginYear == endYear && beginMonth == endMonth && beginDay == endDay) {
+		//			//同一天
+		//			return retList;
+		//		}
+		long differenceDay = (end.getTime() - begin.getTime()) / 1000 / 60 / 60 / 24;
 		for (int i = 1; i <= differenceDay; i++) {
 			Date addDays = addDays(begin, i);
-			Map<String,Object> addDayMap = Maps.newHashMap();
+			Map<String, Object> addDayMap = Maps.newHashMap();
 			addDayMap.put("beginDate", formatDateToYMD(addDays));
 			retList.add(addDayMap);
 		}
 		return retList;
 	}
+
+	/**
+	 * 获取本周的周一时间
+	 * Description: 
+	 * @author gs
+	 * @date 2019年4月15日下午6:47:12 
+	 * @tags @param date
+	 * @tags @return
+	 */
+	public static Date getThisWeekMonday(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		// 获得当前日期是一个星期的第几天
+		int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
+		if (1 == dayWeek) {
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+		}
+		// 设置一个星期的第一天，按中国的习惯一个星期的第一天是星期一
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		// 获得当前日期是一个星期的第几天
+		int day = cal.get(Calendar.DAY_OF_WEEK);
+		// 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
+		cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
+		return cal.getTime();
+	}
+
 }
